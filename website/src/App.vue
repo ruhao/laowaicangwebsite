@@ -17,13 +17,13 @@
 				<li class="headernavmid">
 					</router-link><img src="http://www.laowaicang.com/templates/main/images/logo.png"></li>
 				<li class="headernavright">
-					<router-link to='/news' tag='span' class="navfont">新闻动态</router-link>
+					<router-link to='/news' tag='span' class="navfont" active-class="routeactive">新闻动态</router-link>
 				</li>
 				<li class="headernavright">
-					<router-link to='/hr' tag='span' class="navfont">人力资源</router-link>
+					<router-link to='/hr' tag='span' class="navfont" active-class="routeactive">人力资源</router-link>
 				</li>
 				<li class="headernavright">
-					<router-link to='/message' tag='span' class="navfont">在线留言</router-link>
+					<router-link to='/message' tag='span' class="navfont" active-class="routeactive">在线留言</router-link>
 				</li>
 				<li class="headernavright">
 					<router-link to='/contact' tag='span' class="navfont" active-class="routeactive">联系我们</router-link>

@@ -145,11 +145,45 @@
 					<div class="index-internet-box" v-for="item in internet">
 						<p class="index-internet-body-p1">{{item.num}}</p>
 						<p class="index-internet-body-p2">{{item.introduction}}</p>
-					</div>	
+					</div>
 					<div style="clear: both;"></div>
 				</div>
-				
+
 			</div>
+		</div>
+
+		<!--联系我们-->
+		<div class="index-contact">
+			<img src="../../../images/index-contact.jpg" />
+			<div class="index-contact-c">
+				<div class="index-contact-content">
+					<p class="index-contact-introduce">某某控股集团有限公司成立于2005年1月18日，是一个市政府资本加快国有资本的战略性调整，一些重点企业做大做强，XX（实业）集团有限公司，国有独资公司XYZ控股有限公司和市燃气集团有限责任公司重组和一个城市的建立， 是其中的一个最大的国有企业资本、基础设施和公共设施和市政府和市国资委规划投资融资平台。自成立以来...
+						<span class="index-contact-more">MORE></span></p>
+					<ul class="index-contact-method">
+						<li v-for="item in contact"><img :src="item.icon"><span class="index-contact-span">{{item.value}}</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!--合作伙伴-->
+		<div class="index-cooperation">
+			<div class="index-cooperation-top">
+				<p class="index-cooperation-title">合作伙伴</p>
+				<p class="index-cooperation-content">这里是一些关于老外仓的业务服务伙伴</p>
+				<ul>
+					<li v-for="item in cooperation">
+						<img :src="item" />
+					</li>
+				</ul>
+				<div class="index-cooperation-bottom">
+					<i><img :src="cooperationf[1]"></i>
+					<i><img :src="cooperationf[0]"></i>
+					<i><img :src="cooperationf[1]"></i>
+				</div>
+				<p class="index-cooperation-footer">老外仓 版权所有 2014-2019 ICP 123456789 </p>
+			</div>
+			
 		</div>
 
 	</div>
@@ -158,8 +192,42 @@
 	export default {
 		data() {
 			return {
-				internet:[{num:"860+",introduction:"我们合作品牌的数量已达到860多个"},{num:"125",introduction:"我们公司产品历史悠久，每一件都很经典"},
-				{num:"1000+",introduction:"我们的产品数量已达到1000多个"},{num:"TOP",introduction:"我们是业内最好的公司之一"}]
+				internet: [{
+						num: "860+",
+						introduction: "我们合作品牌的数量已达到860多个"
+					}, {
+						num: "125",
+						introduction: "我们公司产品历史悠久，每一件都很经典"
+					},
+					{
+						num: "1000+",
+						introduction: "我们的产品数量已达到1000多个"
+					}, {
+						num: "TOP",
+						introduction: "我们是业内最好的公司之一"
+					}
+				],
+				contact: [{
+						icon: "../../../images/index-contact1.png",
+						value: "手机：86-15868121781 "
+					},
+					{
+						icon: "../../../images/index-contact2.png",
+						value: "座机：86-010-15868121781"
+					},
+					{
+						icon: "../../../images/index-contact3.png",
+						value: "邮件：15868121781@qq.com"
+					},
+					{
+						icon: "../../../images/index-contact4.png",
+						value: "地址：中国杭州 滨江区 滨盛路1688号"
+					}
+				],
+				cooperation: ["../../../images/cooperation-1.png", "../../../images/cooperation-2.png", "../../../images/cooperation-3.png",
+					"../../../images/cooperation-4.png", "../../../images/cooperation-5.png", "../../../images/cooperation-6.png"
+				],
+				cooperationf: ["../../../images/cooperation-7.png", "../../../images/cooperation-8.png"]
 			}
 		},
 		methods: {
@@ -172,7 +240,9 @@
 		font-style: normal;
 	}
 	
-	p {
+	p,
+	ul,
+	li {
 		margin: 0;
 		padding: 0;
 	}
@@ -376,7 +446,8 @@
 		text-align: center;
 		padding: 90px 260px 0 260px;
 	}
-		.index-internet-content {
+	
+	.index-internet-content {
 		position: absolute;
 		width: 1420px;
 		margin: 0 auto 0 auto;
@@ -398,10 +469,10 @@
 		text-align: center;
 		margin-left: 160px;
 	}
+	
 	.index-internet-box:nth-of-type(1) {
 		margin: 0;
 	}
-	
 	
 	.in .index-internet-title-introduction {
 		font-size: 14px;
@@ -421,5 +492,107 @@
 		color: #ee882a;
 		text-shadow: 0.4px 0.4px 0.4px #ee882a;
 		margin-top: 20px;
+	}
+	
+	.index-contact {
+		position: relative;
+	}
+	
+	.index-contact-c {
+		position: absolute;
+		width: 1420px;
+		margin: 0 auto;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	
+	.index-contact-content {
+		position: absolute;
+		width: 640px;
+		padding-right: 70px;
+		top: 0;
+		left: 0;
+	}
+	
+	.index-contact-introduce {
+		color: #999999;
+		font-size: 10px;
+		letter-spacing: 3px;
+		text-shadow: 0.2px 0.2px 0.2px #b4b0ad;
+		margin-top: 100px;
+	}
+	
+	.index-contact-more {
+		color: #ee882a;
+		letter-spacing: 1px;
+		font-size: 12px;
+		text-shadow: 0 0 0;
+		cursor: pointer;
+	}
+	
+	.index-contact-method {
+		list-style: none;
+		margin-top: 70px;
+		position: relative;
+	}
+	
+	.index-contact-method li {
+		position: relative;
+		margin-top: 20px;
+	}
+	
+	.index-contact-span {
+		position: relative;
+		color: #666666;
+		margin-left: 40px;
+		top: -8px;
+		text-shadow: 0.2px 0.2px 0.2px #b4b0ad
+	}
+	
+	.index-cooperation {}
+	
+	.index-cooperation-top {
+		position: relative;
+		width: 1420px;
+		margin: 0 auto;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		text-align: center;
+	}
+	
+	.index-cooperation-title {
+		color: #f1662c;
+		text-shadow: 0.4px 0.4px 0.4px #f1662c;
+		padding-top: 100px;
+	}
+	
+	.index-cooperation-content {
+		color: #666666;
+		margin-top: 20px;
+		text-shadow: 0.2px 0.2px 0.2px #666666;
+	}
+	
+	.index-cooperation-top ul {
+		display: flex;
+		list-style: none;
+		text-align: center;
+		padding: 0 180px;
+	}
+	
+	.index-cooperation-top ul li {
+		margin-top: 75px;
+		padding: 0 20px;
+	}
+	.index-cooperation-bottom{
+		margin-top: 50px;
+	}
+	.index-cooperation-footer{
+		margin-top: 60px;
+		padding-bottom: 20px;
+		text-shadow: 0.2px 0.2px 0.2px #666666
 	}
 </style>

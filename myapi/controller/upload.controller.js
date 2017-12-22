@@ -5,13 +5,13 @@ const DateModel = require('../models/upload.models');
 
 var storage = multer.diskStorage({
 	destination: function(req, file, cb) {
-		cb(null, './upload')
+		cb(null, './upload')//临时放到一个upload文件下
 	},
 	filename: function(req, file, cb) {
-		cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+		cb(null, file.fieldname + '-' + file.originalname)//命名图片名字和格式
 	}
 })
-
+//上图片有附属的ID
 exports.upload = function(req, res, next) {
 	var cateId=req.params.cateId
 	
@@ -28,7 +28,7 @@ exports.upload = function(req, res, next) {
 		res.end('File is uploaded')
 	})
 }
-
+//上传
 exports.uploads = function(req, res, next) {
 	
 	var upload = multer({
@@ -43,7 +43,7 @@ exports.uploads = function(req, res, next) {
 		res.end('File is uploaded')
 	})
 }
-
+//查找所有图片
 exports.lists = function(req, res, next) {
 
 	DateModel.find({}, function(err, data) {
