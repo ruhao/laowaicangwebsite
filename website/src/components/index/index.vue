@@ -8,7 +8,9 @@
 		<div class="wraperwidth">
 			<p class="index-product-title"><span>产品业务</span></p>
 			<p class="index-product-introduction">
-				老外仓贸易有限公司致力于打造成为中国跨境食品的领军企业、服务和支持于一体的全方位解决方案提供商。
+				老外仓贸易有限公司致力于打造成为中国跨境食品的领军企业、服务和支持于一体的全方位解决方案提供
+			<p class="index-product-introduction">
+				商。
 			</p>
 		</div>
 		<div class="wraperwidth">
@@ -277,9 +279,10 @@
 	}
 	
 	.index-product-introduction {
+		margin-top: 10px;
 		text-align: center;
 		color: #666666;
-		text-shadow: 0.5px 0.5px 0.5px #666666;
+		text-shadow: 0.2px 0.2px 0.2px #666666;
 	}
 	
 	.index-product-content {
