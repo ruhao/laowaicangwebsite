@@ -8,9 +8,11 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var upload = require('./routes/upload');
+var message = require('./routes/message');
+var kind = require('./routes/kind');
 var mongoose = require('mongoose');
 var app = express();
-var cors = require('cors')
+var cors = require('cors');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -29,6 +31,8 @@ app.use(cors())
 app.use('/', index);
 app.use('/users', users);
 app.use('/upload', upload);
+app.use('/kind', kind);
+app.use('/message', message);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

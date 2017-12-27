@@ -8,9 +8,11 @@ import {routes} from './router.js';// 路由列表
 import {store} from './store.js'//vuex
 import 'iview/dist/styles/iview.css'
 
+
 Vue.use(VueAxios,axios);
 Vue.use(VueRouter);
 Vue.use(iView)
+
 
 const router=new VueRouter({
   routes,

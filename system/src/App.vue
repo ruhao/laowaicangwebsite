@@ -22,6 +22,7 @@
     }
     .layout-content-main{
         padding: 10px;
+        height: 100%;
     }
     .layout-copy{
         text-align: center;
@@ -78,6 +79,14 @@
                     <Menu-item key="4">
                         <Icon type="ios-analytics" :size="iconSize"></Icon>
                         <router-link to='/upload' tag='span'>上传模块</router-link>
+                    </Menu-item>
+                    <Menu-item key="4">
+                        <Icon type="ios-analytics" :size="iconSize"></Icon>
+                        <router-link to='/kind' tag='span'>分类模块</router-link>
+                    </Menu-item>
+                    <Menu-item key="4">
+                        <Icon type="ios-analytics" :size="iconSize"></Icon>
+                        <router-link to='/message' tag='span'>留言模块</router-link>
                     </Menu-item>
                 </Menu>
             </i-col>
