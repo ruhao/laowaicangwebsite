@@ -1,25 +1,31 @@
 <template>
-		<div class="content">
-			<div class="content-body">
-				<Table border :columns="columns7" :data="fliter.data6"></Table>
-			</div>
-			<div class="content-foot"> 
-				<Page :total="fliter.total" show-elevator @on-change="changePage"></Page>
-			</div>
+	<div class="content">
+		<Input v-model="fliter.name">
+		<Button slot="append" icon="ios-search" @click="search"></Button>
+		</Input>
+		<div class="content-body">
+			<Table border :columns="columns7" :data="fliter.data6"></Table>
+		</div>
+		<div class="content-foot">
+			<Page :total="fliter.total" show-elevator @on-change="changePage"></Page>
+		</div>
 		<Modal v-model="modal6" title="留言详情" :loading="loading" @on-ok="asyncOK">
 			<div class="message-date">
-				<h3>{{this.theinfo.title}}</h3>
-				<p>{{this.theinfo.content}}</p>
-				<p>{{this.theinfo.name}}</p>
-				<p>{{this.theinfo.telephone}}</p>
-				<p>{{this.theinfo.date}}</p>
+
+				<div>{{this.theinfo.title}}</div>
+				<div>{{this.theinfo.content}}</div>
+				<div class="bottom">{{this.theinfo.name}}</div>
+				<div class="bottom">{{this.theinfo.telephone}}</div>
+				<div class="bottom">{{this.theinfo.date}}</div>
+
 			</div>
 		</Modal>
 	</div>
 </template>
 <script>
-	import moment from 'moment'
+	import Common from '../common/hm.js'
 	export default {
+		mixins: [Common],
 		data() {
 			return {
 				columns7: [{
@@ -64,91 +70,77 @@
 											this.show(params.index)
 										}
 									}
-								}, 'View'),
-								h('Button', {
-									props: {
-										type: 'error',
-										size: 'small'
-									},
-									on: {
-										click: () => {
-											this.remove(params.index)
-										}
-									}
-								}, 'Delete')
+								}, '查看')
 							]);
 						}
 					}
 				],
 				fliter: {
 					data6: [],
-					total:0,
-					limit:10,
-					page:1,
+					total: 0,
+					limit: 12,
+					page: 1,
+					name: ""
 				},
-				modal6: false,
-				loading: true,
-				theinfo:{}
 			}
 		},
 		methods: {
-			show(index) {
-				this.modal6 = true
-				this.theinfo=this.fliter.data6[index]
-			},
-			asyncOK() {
-				setTimeout(() => {
-					this.modal6 = false;
-				}, 1000);
-			},
-			remove(index) {
-				this.fliter.data6.splice(index, 1);
-			},
-			getData() {
-				this.$http.post("http://localhost:3000/message/list",this.fliter).then(res => {
-					let ii=res.data.rows.length
-					for(let i=0;i<ii;i++){
-						res.data.rows[i].date=moment(res.data.rows[i].date).format("YYYY年MM月DD日HH时mm分ss秒")
-					}
-					this.fliter.data6 = res.data.rows
-					this.fliter.total=res.data.total
-				})
-			},
-			changePage(page){
-				this.fliter.page=page
-				this.getData()
-			}
+
 		},
 		created() {
+			console.log(Common)
 			this.getData()
+			
 		}
 
 	}
 </script>
 <style scoped>
-	.content{
+	.content {
 		height: 100%;
 		display: flex;
 		flex-direction: column;
 	}
-	.content-body{
+	
+	.content-body {
 		flex: 1;
+		margin-top: 20px;
 	}
-	.content-foot{
+	
+	.content-foot {
 		height: 50px;
 		text-align: center;
 	}
-	.message-date{
-		min-height: 600px;
+	
+	.message-date {
+		min-height: 550px;
+		display: flex;
+		flex-direction: column;
+		padding-bottom: 50px;
 	}
-	.message-date h3{
+	
+	.message-date div:nth-of-type(1) {
 		text-align: center;
 		margin-top: 20px;
+		height: 30px;
+		font-size: 22px;
+		font-weight: 600;
+		text-shadow: 1px 1px 1px #999999;
 	}
-	p{
-		text-align: right;
-	}
-	p:nth-of-type(1){
+	
+	.message-date div:nth-of-type(2) {
+		text-align: left;
 		text-indent: 2em;
+		flex: 1;
+		margin-top: 30px;
+		color: black;
+	}
+	
+	.bottom {
+		width: 250px;
+		margin-left: 300px;
+		height: 20px;
+		text-align: left;
+		margin-top: 5px;
 	}
 </style>

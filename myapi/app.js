@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var upload = require('./routes/upload');
 var message = require('./routes/message');
 var kind = require('./routes/kind');
+var hr = require('./routes/hr');
 var mongoose = require('mongoose');
 var app = express();
 var cors = require('cors');
@@ -33,6 +34,7 @@ app.use('/users', users);
 app.use('/upload', upload);
 app.use('/kind', kind);
 app.use('/message', message);
+app.use('/hr', hr);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
