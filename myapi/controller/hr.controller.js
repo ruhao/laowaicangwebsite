@@ -15,11 +15,18 @@ exports.list = function(req, res, next) {
 	var limit = (req.body.limit) ? req.body.limit : 10;
 
 	var queryCondition = {};
-    console.log(req.body.name)
 	if(req.body.name && req.body.name.trim().length > 0) {
 		name = req.body.name;
 		queryCondition = {
 			name: new RegExp(name, "i")
+		}
+	}
+	if(req.body.cateid && req.body.cateid.trim().length > 0) {
+		
+		cateid = req.body.cateid;
+		console.log(cateid)
+		queryCondition = {
+			cateid: new RegExp(cateId, "i")
 		}
 	}
 	

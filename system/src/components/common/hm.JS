@@ -15,7 +15,7 @@
 				this.modal6 = false;
 			},
 			getData() {
-				this.$http.post("http://localhost:3000/message/list", this.fliter).then(res => {
+				this.$http.post(`http://localhost:3000/${this.apimodel}/list`, this.fliter).then(res => {
 					let ii = res.data.rows.length
 					for(let i = 0; i < ii; i++) {
 						res.data.rows[i].date = moment(res.data.rows[i].date).format("YYYY年MM月DD日HH时mm分ss秒")

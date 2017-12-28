@@ -23,6 +23,12 @@ const Advertises = resolve => {
 		resolve(require('./components/hr/advertises.vue'))
 	})
 }
+const Hr = resolve => {
+	require.ensure(['./components/hr/hr.vue'], () => {
+		resolve(require('./components/hr/hr.vue'))
+	})
+}
+
 const Train = resolve => {
 	require.ensure(['./components/hr/train.vue'], () => {
 		resolve(require('./components/hr/train.vue'))
@@ -59,22 +65,26 @@ export const routes = [{
 	},
 	{
 		path: '/hr',
+		components: {
+				default:Hr
+		},
 		children:[{
-			path: "/strategy ",
+			path: "strategy/:id",
 			components: {
-				Strategy
-			}
+				default:Strategy
+		},
 		}, {
-			path: "/train ",
+			path: "train/:id",
 			components: {
-				Train
+				default:Train
 			}
-		}, {
-			path: "/advertises  ",
+			
+		},{
+			path: "advertises/:id",
 			components: {
-				Advertises
+				default:Advertises
 			}
 		}]
-	},
+	}
 
 ]

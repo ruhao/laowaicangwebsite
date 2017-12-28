@@ -167,6 +167,8 @@
 	.message-content-w {
 		width: 1420px;
 		margin: 0 auto;
+		position: relative;
+		z-index: 11;
 	}
 	
 	#title {

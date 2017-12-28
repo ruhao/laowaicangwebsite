@@ -17,6 +17,11 @@ var HrSchema = new Schema({
 	sex:String,
 	telephone:Number,
 	cateId: ObjectId,
+	edimgurl:String,
+	edpattern:String,
+	edcontent:String,
+	edreson:String,
+	stcontent:String,
 	date: { type: Date, default: Date.now }
 })
 

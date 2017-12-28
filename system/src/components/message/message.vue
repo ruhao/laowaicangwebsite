@@ -82,13 +82,13 @@
 					page: 1,
 					name: ""
 				},
+				apimodel:'message'
 			}
 		},
 		methods: {
 
 		},
 		created() {
-			console.log(Common)
 			this.getData()
 			
 		}
