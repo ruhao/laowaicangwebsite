@@ -69,18 +69,18 @@ export const routes = [{
 				default:Hr
 		},
 		children:[{
-			path: "strategy/:id",
+			path: "strategy",
 			components: {
 				default:Strategy
 		},
 		}, {
-			path: "train/:id",
+			path: "train",
 			components: {
 				default:Train
 			}
 			
 		},{
-			path: "advertises/:id",
+			path: "advertises",
 			components: {
 				default:Advertises
 			}

@@ -12,11 +12,11 @@
 		<Modal v-model="modal6" title="留言详情" :loading="loading" @on-ok="asyncOK">
 			<div class="message-date">
 
-				<div>{{this.theinfo.title}}</div>
-				<div>{{this.theinfo.content}}</div>
-				<div class="bottom">{{this.theinfo.name}}</div>
-				<div class="bottom">{{this.theinfo.telephone}}</div>
-				<div class="bottom">{{this.theinfo.date}}</div>
+				<div>{{this.formValidate.title}}</div>
+				<div>{{this.formValidate.content}}</div>
+				<div class="bottom">{{this.formValidate.name}}</div>
+				<div class="bottom">{{this.formValidate.telephone}}</div>
+				<div class="bottom">{{this.formValidate.date}}</div>
 
 			</div>
 		</Modal>
@@ -28,6 +28,7 @@
 		mixins: [Common],
 		data() {
 			return {
+				formValidate:[],
 				columns7: [{
 						title: '姓名',
 						key: 'name',

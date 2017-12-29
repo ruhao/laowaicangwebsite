@@ -13,11 +13,6 @@ const Contact = resolve => {
 		resolve(require('./components/contact/contact.vue'))
 	})
 }
-const Hr = resolve => {
-	require.ensure(['./components/hr/hr.vue'], () => {
-		resolve(require('./components/hr/hr.vue'))
-	})
-}
 const Internet = resolve => {
 	require.ensure(['./components/internet/internet.vue'], () => {
 		resolve(require('./components/internet/internet.vue'))
@@ -43,6 +38,12 @@ const Advertises = resolve => {
 		resolve(require('./components/hr/advertises.vue'))
 	})
 }
+const Hr = resolve => {
+	require.ensure(['./components/hr/hr.vue'], () => {
+		resolve(require('./components/hr/hr.vue'))
+	})
+}
+
 const Train = resolve => {
 	require.ensure(['./components/hr/train.vue'], () => {
 		resolve(require('./components/hr/train.vue'))
@@ -86,22 +87,23 @@ export const routes = [{
 	{
 		path: '/hr',
 		components: {
-			default: Hr,
+				default:Hr
 		},
-		children: [{
-			path: "/strategy ",
+		children:[{
+			path: "strategy",
 			components: {
-				Strategy
-			}
+				default:Strategy
+		},
 		}, {
-			path: "/train ",
+			path: "train",
 			components: {
-				Train
+				default:Train
 			}
-		}, {
-			path: "/advertises  ",
+			
+		},{
+			path: "advertises",
 			components: {
-				Advertises
+				default:Advertises
 			}
 		}]
 	},

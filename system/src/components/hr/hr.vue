@@ -19,7 +19,6 @@
 
 	}
 </script>
-
 <style scoped>
 	div{
 		height: 100%;

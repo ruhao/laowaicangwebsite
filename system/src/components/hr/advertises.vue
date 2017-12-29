@@ -1,8 +1,11 @@
 <template>
 	<div class="content">
-		<Input v-model="fliter.name">
+		<Input v-model="fliter.title">
 		<Button slot="append" icon="ios-search" @click="search"></Button>
+		<Button type="success" slot="append" style="width: 80px;margin-left: 10px;background: lightgreen;color: white;" @click="onAdd">添加信息</Button>
+			<Button type="error" slot="append" style="width: 80px;margin-left: 10px;background: lightcoral;color: white;" @click='onDeletes'>删除选中</Button>
 		</Input>
+		
 		<div class="content-body">
 			<Table border :columns="columns7" :data="fliter.data6"></Table>
 		</div>
@@ -44,8 +47,12 @@
 					<Input v-model="formValidate.detail" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
 				</FormItem>
 				<FormItem>
-					<Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
-					<Button type="ghost" @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
+					<div v-if="formValidate.type">
+					<Button type="primary" @click="handleUpdate('formValidate')">修改</Button>
+					</div>
+					<div v-else>
+					<Button type="primary" @click="handleSubmit('formValidate')">新增</Button>
+					</div>
 				</FormItem>
 			</Form>
 		</Modal>
@@ -58,6 +65,8 @@
 		data() {
 			return {
 				apimodel: 'hr',
+				type:"3",
+				cateId:"5a447f5b039f0501acc5cd53",
 				columns7: [{
 						title: '职位',
 						key: 'title'
@@ -76,7 +85,7 @@
 						key: 'date'
 					},
 					{
-						title: 'Action',
+						title: '操作',
 						key: 'action',
 						width: 150,
 						align: 'center',
@@ -116,20 +125,22 @@
 					total: 0,
 					limit: 12,
 					page: 1,
-					cateid:"5a447f5b039f0501acc5cd53"
+					type:"3",
+					title:"",
 				},
 				formValidate: {
 					title: '',
 					num: '',
 					site: '',
 					education: '',
-					detail: [],
+					detail:"",
 					date: '',
 					age: '',
 					pay: '',
 					language: '',
 					telephone: '',
-					sex: ''
+					sex: '',
+					type:""
 				},
 				ruleValidate: {
 					title: [{
@@ -167,9 +178,6 @@
 			}
 		},
 		methods: {
-			handleSubmit() {
-				console.log(this.formValidate)
-			},
 			validateMobile(rule, value, callback) {
 				let reg = /^1[3|5|7|8]\d{9}$/
 				if(reg.test(value)) {
@@ -178,15 +186,18 @@
 					callback(new Error('Please enter the correct phone number'));
 				}
 			},
-			handleReset(name) {
-				this.$refs[name].resetFields();
+			handleUpdate(name) {
+				console.log(this.formValidate)
+				this.$http.post(`http://localhost:3000/${this.apimodel}/data`, this.formValidate).then(res => {
+					console.log(1)
+					this.getData()
+				})
 			}
 		},
 		created() {
 			this.cateid=this.$route.params.id
 			this.getData()
 		}
-
 	}
 </script>
 <style scoped>

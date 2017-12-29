@@ -22,6 +22,7 @@ var HrSchema = new Schema({
 	edcontent:String,
 	edreson:String,
 	stcontent:String,
+	type:String,
 	date: { type: Date, default: Date.now }
 })
 

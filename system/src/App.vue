@@ -102,13 +102,13 @@
 							
 						</template>
 						<MenuItem name="7-1">
-							<router-link to='/hr/strategy/5a447f6a039f0501acc5cd55' tag='span'>人才战略</router-link>
+							<router-link to='/hr/strategy' tag='span'>人才战略</router-link>
 						</MenuItem>
 						<MenuItem name="7-2">
-							<router-link to='/hr/train/5a447f65039f0501acc5cd54' tag='span'>人才培训</router-link>
+							<router-link to='/hr/train' tag='span'>人才培训</router-link>
 						</MenuItem>
 						<MenuItem name="7-3">
-							<router-link to='/hr/advertises/5a447f5b039f0501acc5cd53' tag='span'>人才招聘</router-link>
+							<router-link to='/hr/advertises' tag='span'>人才招聘</router-link>
 						</MenuItem>
 					</Submenu>
 					<Menu-item name="6">
