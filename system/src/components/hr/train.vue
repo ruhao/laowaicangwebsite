@@ -2,50 +2,52 @@
 	<div class="content">
 		<Input v-model="fliter.title">
 		<Button slot="append" icon="ios-search" @click="search"></Button>
+		<Button type="success" slot="append" style="width: 80px;margin-left: 10px;background: lightgreen;color: white;" @click="onAdd">添加信息</Button>
+		<Button type="error" slot="append" style="width: 80px;margin-left: 10px;background: lightcoral;color: white;" @click='onDeletes'>删除选中</Button>
 		</Input>
+
 		<div class="content-body">
-			<Table border :columns="columns7" :data="fliter.data6"></Table>
+			<Table border :columns="columns7" :data="fliter.data6" @on-selection-change='onSelection'></Table>
 		</div>
 		<div class="content-foot">
 			<Page :total="fliter.total" show-elevator @on-change="changePage"></Page>
 		</div>
 		<Modal v-model="modal6" title="留言详情" :loading="loading" @on-ok="asyncOK">
 			<Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-				<FormItem label="人才类型" prop="title">
-					<Input v-model="formValidate.title" placeholder="Enter your title"></Input>
+				<FormItem label="培训方式" prop="edpattern">
+					<Input v-model="formValidate.edpattern" placeholder="Enter your title"></Input>
 				</FormItem>
-				<FormItem label="数量" prop="title">
-					<Input v-model="formValidate.num" placeholder="Enter your num"></Input>
+				<FormItem label="改方式的理由" prop="edpattern">
+					<Input v-model="formValidate.edcontent" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your num"></Input>
 				</FormItem>
-				<FormItem label="学历要求" prop="title">
-					<Input v-model="formValidate.education" placeholder="Enter your education"></Input>
+				<FormItem label="培训内容" prop="edpattern">
+					<Input v-model="formValidate.edreson" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your education"></Input>
 				</FormItem>
-				<FormItem label="年龄要求" prop="title">
-					<Input v-model="formValidate.age" placeholder="Enter your age"></Input>
-				</FormItem>
-				<FormItem label="薪资" prop="title">
-					<Input v-model="formValidate.pay" placeholder="Enter your pay"></Input>
-				</FormItem>
-				<FormItem label="语言要求" prop="title">
-					<Input v-model="formValidate.language" placeholder="Enter your language"></Input>
-				</FormItem>
-				<FormItem label="性别" prop="title">
-					<Input v-model="formValidate.sex" placeholder="Enter your sex"></Input>
-				</FormItem>
-				<FormItem label="联系电话" prop="telephone">
-					<Input v-model="formValidate.telephone" placeholder="Enter your telephone"></Input>
-				</FormItem>
-				<FormItem label="工作地址" prop="city">
-					<Select v-model="formValidate.site" placeholder="Select your site">
-						<Option value="杭州">杭州</Option>
-					</Select>
-				</FormItem>
-				<FormItem label="详细要求" prop="detail">
-					<Input v-model="formValidate.detail" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
+				<Upload multiple type="drag" name='avatar' :action="imgUrl" :on-success="onSuccess">
+					<div style="padding: 20px 0">
+						<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+						<p>点击或将文件拖拽到这里上传</p>
+					</div>
+				</Upload>
+				<FormItem>
+					<div class="madelbox">
+						<div v-if="formValidate.edimgurl" class="madelbox1">
+							<span class="control1" @click="del1">X</span>
+							<img :src="formValidate.edimgurl">
+						</div>
+						<div v-if="formValidate.edimgurl1" class="madelbox1">
+							<span class="control1" @click="del2">X</span>
+							<img :src="formValidate.edimgurl1">
+						</div>
+					</div>
 				</FormItem>
 				<FormItem>
-					<Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
-					<Button type="ghost" @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
+					<div v-if="formValidate.type">
+						<Button type="primary" @click="handleUpdate('formValidate')">修改</Button>
+					</div>
+					<div v-else>
+						<Button type="primary" @click="handleSubmit('formValidate')">新增</Button>
+					</div>
 				</FormItem>
 			</Form>
 		</Modal>
@@ -57,26 +59,24 @@
 		mixins: [Common],
 		data() {
 			return {
+				imgUrl: 'http://localhost:3000/upload/upload',
 				apimodel: 'hr',
+				type: "2",
+				cateId: "5a447f65039f0501acc5cd54",
 				columns7: [{
-						title: '职位',
-						key: 'title'
+						type: 'selection',
+						width: 60,
+						align: 'center'
 					}, {
-						title: '数量',
-						key: 'num'
-					}, {
-						title: '工作地址',
-						key: 'site'
-					}, {
-						title: '联系人电话',
-						key: 'telephone'
+						title: '培训方式',
+						key: 'edpattern'
 					},
 					{
 						title: '发布时间',
 						key: 'date'
 					},
 					{
-						title: 'Action',
+						title: '操作',
 						key: 'action',
 						width: 150,
 						align: 'center',
@@ -116,78 +116,78 @@
 					total: 0,
 					limit: 12,
 					page: 1,
-					type:"2",
-					title:"",
-				},
-				formValidate: {
-					title: '',
-					num: '',
-					site: '',
-					education: '',
-					detail: [],
-					date: '',
-					age: '',
-					pay: '',
-					language: '',
-					telephone: '',
-					sex: ''
+					type: "2",
+					title: "",
 				},
 				ruleValidate: {
-					title: [{
+					edpattern: [{
 						required: true,
 						message: 'The name cannot be empty',
 						trigger: 'blur'
-					}],
-					site: [{
-						required: true,
-						message: 'Please select the city',
-						trigger: 'change'
-					}],
-					detail: [{
-							required: true,
-							message: 'Please enter a personal introduction',
-							trigger: 'blur'
-						},
-						{
-							type: 'string',
-							min: 15,
-							message: 'Introduce no less than 15 words',
-							trigger: 'blur'
-						}
-					],
-					telephone: [{
-							required: true,
-							message: 'Please enter a personal introduction',
-							trigger: 'blur'
-						},
-						{
-							validator:this.validateMobile,
-							trigger: 'blur'
-						}]
-				}
+					}]
+				},
+				formValidate: {
+					edpattern: "",
+					edcontent: "",
+					edreson: "",
+					edimgurl: "",
+					edimgurl1: ""
+				},
+				ids: []
 			}
 		},
 		methods: {
-			handleSubmit() {
-				console.log(this.formValidate)
+			handleUpdate() {
+				this.formValidate.date = new Date()
+				this.$http.put("http://localhost:3000/hr/data/" + this.formValidate._id, this.formValidate).then(res => {
+					this.getData()
+					this.modal6 = false;
+				})
 			},
-			validateMobile(rule, value, callback) {
-				let reg = /^1[3|5|7|8]\d{9}$/
-				if(reg.test(value)) {
-					callback();
+			onSelection(rows) {
+				var ids = [];
+				var idLen = rows.length;
+				for(var i = 0; i < idLen; i++) {
+					ids.push(rows[i]._id);
+				}
+				this.ids = ids;
+			},
+			onDeletes() {
+				this.$Modal.confirm({
+					title: "确认删除",
+					content: "<p>确定删除吗</p>",
+					onOk: () => {
+						this.$http
+							.post("http://localhost:3000/hr/deletes", {
+								ids: this.ids.toString()
+							})
+							.then(res => {
+								this.$Message.info
+
+								("删除成功");
+								this.getData();
+							});
+					}
+				});
+			},
+			onSuccess(res, file) {
+				if(this.formValidate.edimgurl) {
+					this.formValidate.edimgurl1 = "http://localhost:3000/avatar-" + file.name
 				} else {
-					callback(new Error('Please enter the correct phone number'));
+					this.formValidate.edimgurl = "http://localhost:3000/avatar-" + file.name
 				}
 			},
-			handleReset(name) {
-				this.$refs[name].resetFields();
+			del1() {
+				this.formValidate.edimgurl = ""
+			},
+			del2() {
+				this.formValidate.edimgurl1 = ""
 			}
 		},
 		created() {
-			this.cateid=this.$route.params.id
+			this.cateid = this.$route.params.id
 			this.getData()
 		}
-
 	}
 </script>
 <style scoped>
@@ -237,5 +237,33 @@
 		height: 20px;
 		text-align: left;
 		margin-top: 5px;
+	}
+	
+	.madelbox {
+		height: 80px;
+		margin-top: 10px;
+		display: flex;
+		width: 400px;
+	}
+	
+	.madelbox img {
+		height: 100%;
+	}
+	
+	.madelbox1 {
+		width: 142px;
+		margin-left: 10px;
+		position: relative;
+	}
+	
+	.control1 {
+		position: absolute;
+		right: 15px;
+		top: 0;
+		cursor: pointer;
+	}
+	
+	.control1:hover {
+		color: red;
 	}
 </style>

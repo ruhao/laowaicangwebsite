@@ -18,6 +18,7 @@ var HrSchema = new Schema({
 	telephone:Number,
 	cateId: ObjectId,
 	edimgurl:String,
+	edimgurl1:String,
 	edpattern:String,
 	edcontent:String,
 	edreson:String,

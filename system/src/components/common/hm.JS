@@ -8,7 +8,6 @@ export default {
 	},
 	methods: {
 		show(index) {
-			console.log(this.fliter.data6[index])
 			this.modal6 = true
 			Object.assign(this.$data.formValidate, this.fliter.data6[index])
 		},
@@ -55,10 +54,11 @@ export default {
 		handleSubmit() {
 				this.formValidate.type=this.type
 				this.formValidate.cateId=this.cateId
+				this.formValidate.date=new Date()
 				console.log(this.formValidate)
 				this.$http.post(`http://localhost:3000/${this.apimodel}/data`, this.formValidate).then(res => {
-					console.log(1)
 					this.getData()
+					this.modal6 = false;
 				})
 
 		},

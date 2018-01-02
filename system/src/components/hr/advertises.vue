@@ -3,7 +3,6 @@
 		<Input v-model="fliter.title">
 		<Button slot="append" icon="ios-search" @click="search"></Button>
 		<Button type="success" slot="append" style="width: 80px;margin-left: 10px;background: lightgreen;color: white;" @click="onAdd">添加信息</Button>
-			<Button type="error" slot="append" style="width: 80px;margin-left: 10px;background: lightcoral;color: white;" @click='onDeletes'>删除选中</Button>
 		</Input>
 		
 		<div class="content-body">
@@ -186,11 +185,11 @@
 					callback(new Error('Please enter the correct phone number'));
 				}
 			},
-			handleUpdate(name) {
-				console.log(this.formValidate)
-				this.$http.post(`http://localhost:3000/${this.apimodel}/data`, this.formValidate).then(res => {
-					console.log(1)
+			handleUpdate() {
+				this.formValidate.date=new Date()
+				this.$http.put("http://localhost:3000/hr/data/"+this.formValidate._id, this.formValidate).then(res => {
 					this.getData()
+					this.modal6 = false;
 				})
 			}
 		},
