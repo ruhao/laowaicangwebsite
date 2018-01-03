@@ -39,6 +39,16 @@ const Strategy = resolve => {
 		resolve(require('./components/hr/strategy.vue'))
 	})
 }
+const CompanyNews = resolve => {
+	require.ensure(['./components/news/companynews.vue'], () => {
+		resolve(require('./components/news/companynews.vue'))
+	})
+}
+const IndustryDynamics = resolve => {
+	require.ensure(['./components/news/industrydynamics.vue'], () => {
+		resolve(require('./components/news/industrydynamics.vue'))
+	})
+}
 export const routes = [{
 		path: '/',
 		components: {
@@ -83,6 +93,22 @@ export const routes = [{
 			path: "advertises",
 			components: {
 				default:Advertises
+			}
+		}]
+	},{
+		path: '/news',
+		components: {
+				default:Hr
+		},
+		children:[{
+			path: "companynews",
+			components: {
+				default:CompanyNews
+		},
+		}, {
+			path: "industrydynamics",
+			components: {
+				default:IndustryDynamics
 			}
 		}]
 	}

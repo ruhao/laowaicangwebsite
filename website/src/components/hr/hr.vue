@@ -24,9 +24,10 @@
 			</div>
 		</div>
 		<div v-if="this.$route.path==='/hr'">
-			<div>
-				
-			</div>
+			<div class="bottom">
+			<p class="stp">我们的团队拥有广泛的专业和文化背景，我们对中国和其他海外市场的商业环境的深刻理解，是对国际商业舞台上成功运行的关键。同时，我们也认识到人才对集团发展的重要性，因此，我们一直致力于为人才创造最佳的工作和发展平台。</p>
+			<p class="stp">通过多年的实践和发展，我们团队的骨干更深刻的理解是最大的信心，韩胜集团的发展是稳定的集团的长期基础。品行、能力、健康是我们的选择标准，“激情、使命、责任、坚持、锲而不舍”是我们的团队精神，我们致力于创造一个愿景和崇高境界，团队精神，身心健康，和英国的跨国好团队的特点。</p>
+		</div>
 		</div>
 		<div v-else>
 			<keep-alive>
@@ -129,5 +130,15 @@
 	.heroutebox1 .imgchangl{
 		opacity: 1;
 		transition: all 0.5s;
+	}
+	.bottom{
+		width: 1420px;
+		margin: 0 auto;
+	}
+	.stp {
+		margin-top:45px;
+		font-size: 14px;
+		color: #666666;
+		line-height: 25px;
 	}
 </style>

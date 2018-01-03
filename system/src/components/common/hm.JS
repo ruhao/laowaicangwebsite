@@ -61,9 +61,6 @@ export default {
 					this.modal6 = false;
 				})
 
-		},
-		onDeletes() {
-			console.log(2)
 		}
 	}
 }
