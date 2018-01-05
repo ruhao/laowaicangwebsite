@@ -15,16 +15,16 @@
 		<Modal v-model="modal6" title="留言详情" :loading="loading" @on-ok="asyncOK">
 			<Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
 				<FormItem label="标题">
-					<Input v-model="formValidate.htitle" placeholder="Enter your title"></Input>
+					<Input v-model="formValidate.ytitle" placeholder="Enter your title"></Input>
 				</FormItem>
 				<FormItem label="年月">
-					<Input v-model="formValidate.hyear" placeholder="like 17-09"></Input>
+					<Input v-model="formValidate.yyear" placeholder="like 17-09"></Input>
 				</FormItem>
 				<FormItem label="具体几号">
-					<Input v-model="formValidate.hday" placeholder="like 07"></Input>
+					<Input v-model="formValidate.yday" placeholder="like 07"></Input>
 				</FormItem>
 				<FormItem label="具体内容">
-					<Input v-model="formValidate.hcontent" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your education"></Input>
+					<Input v-model="formValidate.ycontent" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your education"></Input>
 				</FormItem>
 				<FormItem>
 					<div v-if="formValidate.type">
@@ -46,22 +46,22 @@
 		data() {
 			return {
 				apimodel: "news",
-				type: "2",
-				cateId: "5a4db8ef02847d17b42b0938",
+				type: "3",
+				cateId: "5a4db92702847d17b42b093a",
 				columns7: [{
 						type: 'selection',
 						width: 60,
 						align: 'center'
 					}, {
 						title: '主题',
-						key: 'htitle'
+						key: 'ytitle'
 					},
 					{
 						title: '年月',
-						key: 'hyear'
+						key: 'yyear'
 					}, {
 						title: '具体日期',
-						key: 'hday'
+						key: 'yday'
 					},
 					{
 						title: '操作',
@@ -104,17 +104,17 @@
 					total: 0,
 					limit: 12,
 					page: 1,
-					type: "2",
+					type: "3",
 					title: "",
 				},
 				ruleValidate: {
 					
 				},
 				formValidate: {
-					htitle: "",
-					hcontent: "",
-					hyear: "",
-					hday: "",
+					ytitle: "",
+					ycontent: "",
+					yyear: "",
+					yday: "",
 					type:"",
 				},
 				ids: []

@@ -18,14 +18,14 @@
 				sure: "",
 				formItem: {
 					text: '',
-					parentId:"",
+					parentId: "",
 				},
 				kinddata: "",
 				data5: [{
 					text: '',
 					id: '',
 					expand: true,
-					parentId:"",
+					parentId: "",
 					render: (h, {
 						root,
 						node,
@@ -151,32 +151,42 @@
 			},
 			append(data) {
 				this.modal1 = true,
-				Object.assign(this.$data.formItem, this.$options.data().formItem)
+					Object.assign(this.$data.formItem, this.$options.data().formItem)
 				this.formItem.parentId = data.id
 				this.sure = "sure"
 			},
 			remove(root, node, data) {
-				console.log(data.id)
-				this.$http.delete("http://localhost:3000/kind/data/"+data.id).then(res=>{
-					this.getData()
-						this.$Message.info('Clicked ok');
+				this.$Modal.confirm({
+					title: '确认删除数据吗',
+					content: '删除后这些数据将无法找回',
+					loading: true,
+					onOk: () => {
+						setTimeout(() => {
+							this.$http.delete("http://localhost:3000/kind/data/" + data.id).then(res => {
+								this.getData()
+								this.$Message.info('Clicked ok');
+							})
+							this.$Modal.remove();
+						}, 500);
+					}
 				})
+
 			},
 			update(root, node, data) {
 				this.modal1 = true,
-				Object.assign(this.$data.formItem, data)
+					Object.assign(this.$data.formItem, data)
 				this.sure = ""
 			},
 			ok() {
-			
+
 				if(this.sure) {
-					this.$http.post("http://localhost:3000/kind/data", this.formItem).then(res => {	
+					this.$http.post("http://localhost:3000/kind/data", this.formItem).then(res => {
 						this.getData()
 						this.$Message.info('Clicked ok');
 					})
-				}else {
+				} else {
 					console.log(this.formItem)
-						this.$http.put("http://localhost:3000/kind/data/" + this.formItem.id, this.formItem).then(res => {
+					this.$http.put("http://localhost:3000/kind/data/" + this.formItem.id, this.formItem).then(res => {
 						console.log(this.formItem)
 						console.log(2)
 						this.getData()
@@ -207,7 +217,7 @@
 						text: data[i].text,
 						expand: true,
 						id: data[i]._id,
-						parentId:data[i].parentId,
+						parentId: data[i].parentId,
 						children: [],
 					}
 					Node.push(obj)

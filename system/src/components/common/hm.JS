@@ -20,6 +20,7 @@ export default {
 				for(let i = 0; i < ii; i++) {
 					res.data.rows[i].date = moment(res.data.rows[i].date).format("YYYY年MM月DD日HH时mm分ss秒")
 				}
+				console.log(this.apimodel)
 				this.fliter.data6 = res.data.rows
 				this.fliter.total = res.data.total
 			})
@@ -49,16 +50,17 @@ export default {
 		},
 		onAdd() {
 			this.modal6 = true,
-				Object.assign(this.$data.formValidate, this.$options.data().formValidate)
+			Object.assign(this.$data.formValidate, this.$options.data().formValidate)
 		},
 		handleSubmit() {
+				console.log(this.formValidate)
 				this.formValidate.type=this.type
 				this.formValidate.cateId=this.cateId
 				this.formValidate.date=new Date()
-				console.log(this.formValidate)
 				this.$http.post(`http://localhost:3000/${this.apimodel}/data`, this.formValidate).then(res => {
 					this.getData()
 					this.modal6 = false;
+					this.formValidate.type="";
 				})
 
 		}

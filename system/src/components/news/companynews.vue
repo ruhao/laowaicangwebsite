@@ -14,14 +14,17 @@
 		</div>
 		<Modal v-model="modal6" title="留言详情" :loading="loading" @on-ok="asyncOK">
 			<Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-				<FormItem label="培训方式" prop="edpattern">
-					<Input v-model="formValidate.edpattern" placeholder="Enter your title"></Input>
+				<FormItem label="标题">
+					<Input v-model="formValidate.title" placeholder="Enter your title"></Input>
 				</FormItem>
-				<FormItem label="改方式的理由" prop="edpattern">
-					<Input v-model="formValidate.edcontent" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your num"></Input>
+				<FormItem label="年月">
+					<Input v-model="formValidate.year" placeholder="like 17-09"></Input>
 				</FormItem>
-				<FormItem label="培训内容" prop="edpattern">
-					<Input v-model="formValidate.edreson" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your education"></Input>
+				<FormItem label="具体几号">
+					<Input v-model="formValidate.day" placeholder="like 07"></Input>
+				</FormItem>
+				<FormItem label="具体内容">
+					<Input v-model="formValidate.content" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your education"></Input>
 				</FormItem>
 				<Upload multiple type="drag" name='avatar' :action="imgUrl" :on-success="onSuccess">
 					<div style="padding: 20px 0">
@@ -31,13 +34,9 @@
 				</Upload>
 				<FormItem>
 					<div class="madelbox">
-						<div v-if="formValidate.edimgurl" class="madelbox1">
+						<div v-if="formValidate.imgurl" class="madelbox1">
 							<span class="control1" @click="del1">X</span>
-							<img :src="formValidate.edimgurl">
-						</div>
-						<div v-if="formValidate.edimgurl1" class="madelbox1">
-							<span class="control1" @click="del2">X</span>
-							<img :src="formValidate.edimgurl1">
+							<img :src="formValidate.imgurl">
 						</div>
 					</div>
 				</FormItem>
@@ -55,25 +54,28 @@
 </template>
 <script>
 	import Common from '../common/hm.js'
+	import Formimg from '../common/formimg.js'
 	export default {
-		mixins: [Common],
+		mixins: [Common, Formimg],
 		data() {
 			return {
-				imgUrl: 'http://localhost:3000/upload/upload',
-				apimodel: 'hr',
-				type: "2",
-				cateId: "5a447f65039f0501acc5cd54",
+				apimodel: "news",
+				type: "1",
+				cateId: "5a4db8e602847d17b42b0937",
 				columns7: [{
 						type: 'selection',
 						width: 60,
 						align: 'center'
 					}, {
-						title: '培训方式',
-						key: 'edpattern'
+						title: '主题',
+						key: 'title'
 					},
 					{
-						title: '发布时间',
-						key: 'date'
+						title: '年月',
+						key: 'year'
+					}, {
+						title: '具体日期',
+						key: 'day'
 					},
 					{
 						title: '操作',
@@ -116,76 +118,35 @@
 					total: 0,
 					limit: 12,
 					page: 1,
-					type: "2",
+					type: "1",
 					title: "",
 				},
 				ruleValidate: {
-					edpattern: [{
-						required: true,
-						message: 'The name cannot be empty',
-						trigger: 'blur'
-					}]
+					
 				},
 				formValidate: {
-					edpattern: "",
-					edcontent: "",
-					edreson: "",
-					edimgurl: "",
-					edimgurl1: ""
+					title: "",
+					content: "",
+					year: "",
+					imgurl: "",
+					day: "",
+					type:"",
 				},
 				ids: []
 			}
 		},
 		methods: {
-			handleUpdate() {
-				this.formValidate.date = new Date()
-				this.$http.put("http://localhost:3000/hr/data/" + this.formValidate._id, this.formValidate).then(res => {
-					this.getData()
-					this.modal6 = false;
-				})
-			},
-			onSelection(rows) {
-				var ids = [];
-				var idLen = rows.length;
-				for(var i = 0; i < idLen; i++) {
-					ids.push(rows[i]._id);
-				}
-				this.ids = ids;
-			},
-			onDeletes() {
-				this.$Modal.confirm({
-					title: "确认删除",
-					content: "<p>确定删除吗</p>",
-					onOk: () => {
-						this.$http
-							.post("http://localhost:3000/hr/deletes", {
-								ids: this.ids.toString()
-							})
-							.then(res => {
-								this.$Message.info
-
-								("删除成功");
-								this.getData();
-							});
-					}
-				});
-			},
 			onSuccess(res, file) {
-				if(this.formValidate.edimgurl) {
-					this.formValidate.edimgurl1 = "http://localhost:3000/avatar-" + file.name
+				if(this.formValidate.imgurl) {
 				} else {
-					this.formValidate.edimgurl = "http://localhost:3000/avatar-" + file.name
+					this.formValidate.imgurl = "http://localhost:3000/avatar-" + file.name
 				}
 			},
 			del1() {
 				this.formValidate.edimgurl = ""
-			},
-			del2() {
-				this.formValidate.edimgurl1 = ""
 			}
 		},
 		created() {
-			this.cateid = this.$route.params.id
 			this.getData()
 		}
 	}
@@ -254,6 +215,7 @@
 		width: 142px;
 		margin-left: 10px;
 		position: relative;
+		overflow: hidden;
 	}
 	
 	.control1 {

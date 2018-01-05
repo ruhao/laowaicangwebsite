@@ -1,7 +1,7 @@
 var express = require("express")
 var router = express.Router();
 
-var DataCtrl = require("../controller/hr.controller.js");
+var DataCtrl = require("../controller/news.controller.js");
 
 router.post('/list',DataCtrl.list);
 router.post('/data',DataCtrl.create);

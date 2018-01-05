@@ -39,11 +39,32 @@ const Strategy = resolve => {
 		resolve(require('./components/hr/strategy.vue'))
 	})
 }
+
+const News = resolve => {
+	require.ensure(['./components/news/news.vue'], () => {
+		resolve(require('./components/news/news.vue'))
+	})
+}
+
+
 const CompanyNews = resolve => {
 	require.ensure(['./components/news/companynews.vue'], () => {
 		resolve(require('./components/news/companynews.vue'))
 	})
 }
+
+const CompanyPhotos = resolve => {
+	require.ensure(['./components/news/companyphotos.vue'], () => {
+		resolve(require('./components/news/companyphotos.vue'))
+	})
+}
+
+const Marketing = resolve => {
+	require.ensure(['./components/news/marketing.vue'], () => {
+		resolve(require('./components/news/marketing.vue'))
+	})
+}
+
 const IndustryDynamics = resolve => {
 	require.ensure(['./components/news/industrydynamics.vue'], () => {
 		resolve(require('./components/news/industrydynamics.vue'))
@@ -76,39 +97,49 @@ export const routes = [{
 	{
 		path: '/hr',
 		components: {
-				default:Hr
+			default: Hr
 		},
-		children:[{
+		children: [{
 			path: "strategy",
 			components: {
-				default:Strategy
-		},
+				default: Strategy
+			},
 		}, {
 			path: "train",
 			components: {
-				default:Train
+				default: Train
 			}
-			
-		},{
+
+		}, {
 			path: "advertises",
 			components: {
-				default:Advertises
+				default: Advertises
 			}
 		}]
-	},{
+	}, {
 		path: '/news',
 		components: {
-				default:Hr
+			default: News
 		},
-		children:[{
+		children: [{
 			path: "companynews",
 			components: {
-				default:CompanyNews
-		},
+				default: CompanyNews
+			}
 		}, {
 			path: "industrydynamics",
 			components: {
-				default:IndustryDynamics
+				default: IndustryDynamics
+			}
+		}, {
+			path: "marketing",
+			components: {
+				default: Marketing
+			}
+		}, {
+			path: "companyphotos",
+			components: {
+				default: CompanyPhotos
 			}
 		}]
 	}

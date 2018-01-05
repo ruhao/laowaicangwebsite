@@ -75,44 +75,62 @@
 			<i-col :span="spanLeft" class="layout-menu-left">
 				<Menu active-key="1" theme="dark" width="auto">
 					<div class="layout-logo-left"></div>
-					<Menu-item name="1">
-						<Icon type="ios-navigate"></Icon>
-						<router-link to='/index' tag='span'>分类模块</router-link>
-					</Menu-item>
 					<Menu-item name="2">
 						<Icon type="ios-navigate"></Icon>
 						<router-link to='/index' tag='span'>产品模块</router-link>
 					</Menu-item>
-					<Menu-item name="3">
-						<Icon type="ios-navigate"></Icon>
-						<router-link to='/index' tag='span'>最新信息</router-link>
-					</Menu-item>
+					<Submenu name="3">
+						<template slot="title">
+							<Icon type="ios-reverse-camera"></Icon>
+							最新新闻
+							
+						</template>
+						<MenuItem name="3-1">
+							<Icon type="ios-copy-outline"></Icon>
+							<router-link to='/news/companynews' tag='span'>公司新闻</router-link>
+						</MenuItem>
+						<MenuItem name="3-2">
+							<Icon type="videocamera"></Icon>
+							<router-link to='/news/industrydynamics' tag='span'>行业动态</router-link>
+						</MenuItem>
+						<MenuItem name="3-3">
+							<Icon type="images"></Icon>
+							<router-link to='/news/companyphotos' tag='span'>公司照片</router-link>
+						</MenuItem>
+						<MenuItem name="3-4">
+							<Icon type="ios-color-wand"></Icon>
+							<router-link to='/news/marketing' tag='span'>营销活动</router-link>
+						</MenuItem>
+					</Submenu>
 					<Menu-item name="4">
-						<Icon type="ios-navigate"></Icon>
+						<Icon type="edit"></Icon>
 						<router-link to='/upload' tag='span'>上传模块</router-link>
 					</Menu-item>
 					<Menu-item name="5">
-						<Icon type="ios-navigate"></Icon>
+						<Icon type="ios-copy-outline"></Icon>
 						<router-link to='/kind' tag='span'>分类模块</router-link>
 					</Menu-item>
 					<Submenu name="7">
 						<template slot="title">
-							<Icon type="ios-navigate"></Icon>
+							<Icon type="ios-people"></Icon>
 							人力资源
 							
 						</template>
 						<MenuItem name="7-1">
+							<Icon type="android-people"></Icon>
 							<router-link to='/hr/strategy' tag='span'>人才战略</router-link>
 						</MenuItem>
 						<MenuItem name="7-2">
+							<Icon type="android-people"></Icon>
 							<router-link to='/hr/train' tag='span'>人才培训</router-link>
 						</MenuItem>
 						<MenuItem name="7-3">
+							<Icon type="android-people"></Icon>
 							<router-link to='/hr/advertises' tag='span'>人才招聘</router-link>
 						</MenuItem>
 					</Submenu>
 					<Menu-item name="6">
-						<Icon type="ios-navigate"></Icon>
+						<Icon type="ios-email-outline"></Icon>
 						<router-link to='/message' tag='span'>留言模块</router-link>
 					</Menu-item>
 				</Menu>

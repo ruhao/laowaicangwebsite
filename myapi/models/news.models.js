@@ -6,10 +6,24 @@ var ObjectId = Schema.ObjectId;
 
 var NewsSchema = new Schema({
 	title:String,
-	telephone:Number,
 	content:String,
-	name:String,
+	type:String,
 	cateId: ObjectId,
+	year:String,
+	day:String,
+	imgurl:String,
+	htitle:String,
+	hyear:String,
+	hday:String,
+	hcontent:String,
+	ytitle:String,
+	yyear:String,
+	yday:String,
+	ycontent:String,
+	zimgurl1:String,
+	zimgurl2:String,
+	zimgurl3:String,
+	zimgurl4:String,
 	date: { type: Date, default: Date.now }
 })
 

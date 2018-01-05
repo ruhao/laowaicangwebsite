@@ -9,9 +9,9 @@
 			<p class="index-product-title"><span>产品业务</span></p>
 			<p class="index-product-introduction">
 				老外仓贸易有限公司致力于打造成为中国跨境食品的领军企业、服务和支持于一体的全方位解决方案提供
-			<p class="index-product-introduction">
-				商。
-			</p>
+				<p class="index-product-introduction">
+					商。
+				</p>
 		</div>
 		<div class="wraperwidth">
 			<div class="index-product-content">
@@ -63,12 +63,12 @@
 					<div class="index-news-content-top">
 
 						<div>
-							<i v-on:mouseenter="newsmove"> 
-							<span class="index-news-content-span">
-								<p class="index-news-p1"><span class="index-news-content-year">17</span><span class="index-news-content-month">17-01</span></p>
-								<p class="index-news-p2">新闻营销可能是未来营销的主流趋势</p>
-							</span>
-						</i>
+							<i> 
+								<span class="index-news-content-span">
+									<p class="index-news-p1"><span class="index-news-content-year">17</span><span class="index-news-content-month">17-01</span></p>
+									<p class="index-news-p2">新闻营销可能是未来营销的主流趋势</p>
+								</span>
+							</i>
 							<img src="../../../images/news-con1.png" />
 						</div>
 						<div>
@@ -185,7 +185,7 @@
 				</div>
 				<p class="index-cooperation-footer">老外仓 版权所有 2014-2019 ICP 123456789 </p>
 			</div>
-			
+
 		</div>
 
 	</div>
@@ -590,10 +590,12 @@
 		margin-top: 75px;
 		padding: 0 20px;
 	}
-	.index-cooperation-bottom{
+	
+	.index-cooperation-bottom {
 		margin-top: 50px;
 	}
-	.index-cooperation-footer{
+	
+	.index-cooperation-footer {
 		margin-top: 60px;
 		padding-bottom: 20px;
 		text-shadow: 0.2px 0.2px 0.2px #666666

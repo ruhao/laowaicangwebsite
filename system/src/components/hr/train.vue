@@ -1,6 +1,6 @@
 <template>
 	<div class="content">
-		<Input v-model="fliter.title">
+		<Input v-model="fliter.edpattern">
 		<Button slot="append" icon="ios-search" @click="search"></Button>
 		<Button type="success" slot="append" style="width: 80px;margin-left: 10px;background: lightgreen;color: white;" @click="onAdd">添加信息</Button>
 		<Button type="error" slot="append" style="width: 80px;margin-left: 10px;background: lightcoral;color: white;" @click='onDeletes'>删除选中</Button>
@@ -17,7 +17,7 @@
 				<FormItem label="培训方式" prop="edpattern">
 					<Input v-model="formValidate.edpattern" placeholder="Enter your title"></Input>
 				</FormItem>
-				<FormItem label="改方式的理由" prop="edpattern">
+				<FormItem label="选该方式的理由" prop="edpattern">
 					<Input v-model="formValidate.edcontent" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your num"></Input>
 				</FormItem>
 				<FormItem label="培训内容" prop="edpattern">
@@ -55,11 +55,11 @@
 </template>
 <script>
 	import Common from '../common/hm.js'
+	import Formimg from '../common/formimg.js'
 	export default {
-		mixins: [Common],
+		mixins: [Common, Formimg],
 		data() {
 			return {
-				imgUrl: 'http://localhost:3000/upload/upload',
 				apimodel: 'hr',
 				type: "2",
 				cateId: "5a447f65039f0501acc5cd54",
@@ -118,6 +118,7 @@
 					page: 1,
 					type: "2",
 					title: "",
+					edpattern: "",
 				},
 				ruleValidate: {
 					edpattern: [{
@@ -137,39 +138,6 @@
 			}
 		},
 		methods: {
-			handleUpdate() {
-				this.formValidate.date = new Date()
-				this.$http.put("http://localhost:3000/hr/data/" + this.formValidate._id, this.formValidate).then(res => {
-					this.getData()
-					this.modal6 = false;
-				})
-			},
-			onSelection(rows) {
-				var ids = [];
-				var idLen = rows.length;
-				for(var i = 0; i < idLen; i++) {
-					ids.push(rows[i]._id);
-				}
-				this.ids = ids;
-			},
-			onDeletes() {
-				this.$Modal.confirm({
-					title: "确认删除",
-					content: "<p>确定删除吗</p>",
-					onOk: () => {
-						this.$http
-							.post("http://localhost:3000/hr/deletes", {
-								ids: this.ids.toString()
-							})
-							.then(res => {
-								this.$Message.info
-
-								("删除成功");
-								this.getData();
-							});
-					}
-				});
-			},
 			onSuccess(res, file) {
 				if(this.formValidate.edimgurl) {
 					this.formValidate.edimgurl1 = "http://localhost:3000/avatar-" + file.name
@@ -185,7 +153,6 @@
 			}
 		},
 		created() {
-			this.cateid = this.$route.params.id
 			this.getData()
 		}
 	}
@@ -254,6 +221,7 @@
 		width: 142px;
 		margin-left: 10px;
 		position: relative;
+		overflow: hidden;
 	}
 	
 	.control1 {

@@ -1,10 +1,6 @@
 <template>
 	<div>
-		<div class="contact-title">
-			<img src="../../../images/left-c.jpg" />
-			<p>人才招聘</p>
-			<img src="../../../images/right-c.jpg" />
-		</div>
+		<Nav navtitle="人才招聘"></Nav>
 		<div class="adbody">
 			<div v-if="this.fliter.data6">
 				<div v-for="item in this.fliter.data6" class="adhrbox">
@@ -55,6 +51,7 @@
 </template>
 
 <script>
+	import Nav from "../common/nav.vue"
 	export default {
 		data() {
 			return {
@@ -65,6 +62,9 @@
 					limit: 4,
 				}
 			}
+		},
+		components:{
+			Nav,
 		},
 		created() {
 			this.$http.post('http://localhost:3000/hr/list', this.fliter).then(res => {

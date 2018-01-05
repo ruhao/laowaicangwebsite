@@ -54,6 +54,36 @@ const Strategy = resolve => {
 		resolve(require('./components/hr/strategy.vue'))
 	})
 }
+const CompanyNews = resolve => {
+	require.ensure(['./components/news/companynews.vue'], () => {
+		resolve(require('./components/news/companynews.vue'))
+	})
+}
+
+const CompanyPhotos = resolve => {
+	require.ensure(['./components/news/companyphotos.vue'], () => {
+		resolve(require('./components/news/companyphotos.vue'))
+	})
+}
+
+const Marketing = resolve => {
+	require.ensure(['./components/news/marketing.vue'], () => {
+		resolve(require('./components/news/marketing.vue'))
+	})
+}
+
+const IndustryDynamics = resolve => {
+	require.ensure(['./components/news/industrydynamics.vue'], () => {
+		resolve(require('./components/news/industrydynamics.vue'))
+	})
+}
+
+
+const PhotoDetail = resolve => {
+	require.ensure(['./components/news/photodetail.vue'], () => {
+		resolve(require('./components/news/photodetail.vue'))
+	})
+}
 export const routes = [{
 		path: '/',
 		components: {
@@ -108,15 +138,42 @@ export const routes = [{
 		}]
 	},
 	{
-		path: '/news',
-		components: {
-			default: News,
-		}
-	},
-	{
 		path: '/product',
 		components: {
 			default: Product,
+		},
+	}, 
+	{
+		path: '/news',
+		components: {
+				default:News
+		},
+		children:[{
+			path: "/",
+			components: {
+				default:CompanyNews
 		}
+		}, {
+			path: "companyphotos",
+			components: {
+				default:CompanyPhotos
+			}
+			
+		},{
+			path: "marketing",
+			components: {
+				default:Marketing
+			}
+		},{
+			path: "industrydynamics",
+			components: {
+				default:IndustryDynamics
+			}
+		},{
+			path: "photodetail",
+			components: {
+				default:PhotoDetail
+			}
+		}]
 	}
 ]

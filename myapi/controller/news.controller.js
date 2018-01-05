@@ -23,7 +23,6 @@ exports.list = function(req, res, next) {
 		type = req.body.type;
 		queryCondition.type = new RegExp(type, "i")
 	}
-
 	DataModel.paginate(queryCondition, {
 		sort: {
 			_id: -1

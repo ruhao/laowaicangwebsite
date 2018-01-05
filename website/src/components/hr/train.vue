@@ -1,10 +1,6 @@
 <template>
 	<div>
-		<div class="contact-title">
-			<img src="../../../images/left-c.jpg" />
-			<p>人才培训</p>
-			<img src="../../../images/right-c.jpg" />
-		</div>
+		<Nav navtitle="人才培训"></Nav>
 		<div class="traincontent">
 			<p class="traincontent-title">内部培训</p>
 			<p class="traincontent-tcontent">培训体系是集团人才培养体系的重要组成部分，也是优秀的声誉体系之一。在培训模式上，该组采用混合培训，包括在职培训、课堂培训、在线培训、远程培训等。在职培训是最重要的组成部分之一，包括直接经理制、导师制等。</p>
@@ -25,6 +21,7 @@
 </template>
 
 <script>
+	import Nav from "../common/nav.vue"
 	export default {
 		data() {
 			return {
@@ -35,6 +32,9 @@
 					limit: 2,
 				}
 			}
+		},
+		components:{
+			Nav
 		},
 		created() {
 			this.$http.post('http://localhost:3000/hr/list', this.fliter).then(res => {

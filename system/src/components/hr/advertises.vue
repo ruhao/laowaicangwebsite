@@ -154,7 +154,7 @@
 					}],
 					detail: [{
 							required: true,
-							message: 'Please enter a personal introduction',
+							message: 'Please enter a personal detail',
 							trigger: 'blur'
 						},
 						{
@@ -166,7 +166,7 @@
 					],
 					telephone: [{
 							required: true,
-							message: 'Please enter a personal introduction',
+							message: 'Please enter a personal telephone',
 							trigger: 'blur'
 						},
 						{
