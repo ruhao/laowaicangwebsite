@@ -70,6 +70,26 @@ const IndustryDynamics = resolve => {
 		resolve(require('./components/news/industrydynamics.vue'))
 	})
 }
+const InternetSever =resolve => {
+	require.ensure(['./components/internet/internetserver.vue'], () => {
+		resolve(require('./components/internet/internetserver.vue'))
+	})
+}
+const About = resolve => {
+	require.ensure(['./components/about/about.vue'], () => {
+		resolve(require('./components/about/about.vue'))
+	})
+}
+const AboutHonor = resolve => {
+	require.ensure(['./components/about/abouthonor.vue'], () => {
+		resolve(require('./components/about/abouthonor.vue'))
+	})
+}
+const AboutCulture = resolve => {
+	require.ensure(['./components/about/aboutculture.vue'], () => {
+		resolve(require('./components/about/aboutculture.vue'))
+	})
+}
 export const routes = [{
 		path: '/',
 		components: {
@@ -94,6 +114,29 @@ export const routes = [{
 			default: Message,
 		}
 	},
+	{
+		path: '/internet',
+		components: {
+			default: InternetSever,
+		}
+	},{
+		path: '/about',
+		components: {
+			default: About
+		},
+		children: [{
+			path: "abouthonor",
+			components: {
+				default: AboutHonor
+			},
+		}, {
+			path: "aboutculture",
+			components: {
+				default: AboutCulture
+			}
+
+		}]
+	}, 
 	{
 		path: '/hr',
 		components: {

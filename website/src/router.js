@@ -18,6 +18,19 @@ const Internet = resolve => {
 		resolve(require('./components/internet/internet.vue'))
 	})
 }
+
+const CompanyServer = resolve => {
+	require.ensure(['./components/internet/companyserver.vue'], () => {
+		resolve(require('./components/internet/companyserver.vue'))
+	})
+}
+
+const Imarketing = resolve => {
+	require.ensure(['./components/internet/marketing.vue'], () => {
+		resolve(require('./components/internet/marketing.vue'))
+	})
+}
+
 const Message = resolve => {
 	require.ensure(['./components/message/message.vue'], () => {
 		resolve(require('./components/message/message.vue'))
@@ -106,7 +119,18 @@ export const routes = [{
 		path: '/internet',
 		components: {
 			default: Internet,
-		}
+		},
+		children:[{
+			path:"server",
+			components:{
+				default:CompanyServer,
+			}
+		},{
+			path:"/",
+			components:{
+				default:Imarketing,
+			}
+		}]
 	},
 	{
 		path: '/message',

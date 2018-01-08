@@ -41,7 +41,7 @@
 
 <script>
 	import Foot from "../common/footer.vue"
-	
+
 	export default {
 		data() {
 			return {
@@ -64,7 +64,7 @@
 				]
 			}
 		},
-		components:{
+		components: {
 			Foot,
 		}
 	}
@@ -76,6 +76,10 @@
 	img {
 		margin: 0;
 		padding: 0;
+	}
+	
+	.headerbg {
+		width: 100%;
 	}
 	
 	.contact-title {
@@ -129,11 +133,13 @@
 		position: relative;
 		margin-top: 20px;
 	}
-	.index-contact-method li img{
+	
+	.index-contact-method li img {
 		width: 24px;
 	}
+	
 	.index-contact-span {
-		font-size:14px;
+		font-size: 14px;
 		position: relative;
 		color: #666666;
 		margin-left: 40px;
@@ -184,6 +190,4 @@
 	.contact-content-img {
 		margin-left: 580px;
 	}
-	
-	
 </style>

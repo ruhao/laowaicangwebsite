@@ -122,6 +122,10 @@
 		padding: 0;
 	}
 	
+	.headerbg {
+		width: 100%;
+	}
+	
 	.contact-title {
 		display: flex;
 		width: 440px;

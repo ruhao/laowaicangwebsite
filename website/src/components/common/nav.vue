@@ -8,11 +8,16 @@
 
 <script>
 	export default {
-		props:["navtitle"]
+		props: ["navtitle"]
 	}
 </script>
 
 <style scoped>
+	p {
+		margin: 0;
+		padding: 0;
+	}
+	
 	.contact-title {
 		display: flex;
 		width: 440px;

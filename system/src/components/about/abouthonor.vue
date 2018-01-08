@@ -1,6 +1,6 @@
 <template>
 	<div class="content">
-		<Input v-model="fliter.title">
+		<Input v-model="fliter.edpattern">
 		<Button slot="append" icon="ios-search" @click="search"></Button>
 		<Button type="success" slot="append" style="width: 80px;margin-left: 10px;background: lightgreen;color: white;" @click="onAdd">添加信息</Button>
 		<Button type="error" slot="append" style="width: 80px;margin-left: 10px;background: lightcoral;color: white;" @click='onDeletes'>删除选中</Button>
@@ -14,17 +14,11 @@
 		</div>
 		<Modal v-model="modal6" title="留言详情" :loading="loading" @on-ok="asyncOK">
 			<Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-				<FormItem label="标题">
+				<FormItem label="主题">
 					<Input v-model="formValidate.title" placeholder="Enter your title"></Input>
 				</FormItem>
-				<FormItem label="年月">
-					<Input v-model="formValidate.year" placeholder="like 17-09"></Input>
-				</FormItem>
-				<FormItem label="具体几号">
-					<Input v-model="formValidate.day" placeholder="like 07"></Input>
-				</FormItem>
-				<FormItem label="具体内容">
-					<Input v-model="formValidate.content" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your education"></Input>
+				<FormItem label="内容">
+					<Input v-model="formValidate.content" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your num"></Input>
 				</FormItem>
 				<Upload multiple type="drag" name='avatar' :action="imgUrl" :on-success="onSuccess">
 					<div style="padding: 20px 0">
@@ -59,10 +53,10 @@
 		mixins: [Common, Formimg],
 		data() {
 			return {
-				apimodel: "news",
 				type: "1",
-				cateId: "5a4db8e602847d17b42b0937",
-				columns7: [{//建表格
+				apimodel: 'about',//resful api 接口路径不同处
+				cateId: "5a5336cd6c074c03d47fb4c5",
+				columns7: [{
 						type: 'selection',
 						width: 60,
 						align: 'center'
@@ -71,11 +65,8 @@
 						key: 'title'
 					},
 					{
-						title: '年月',
-						key: 'year'
-					}, {
-						title: '具体日期',
-						key: 'day'
+						title: '发布时间',
+						key: 'date'
 					},
 					{
 						title: '操作',
@@ -118,25 +109,21 @@
 					total: 0,
 					limit: 12,
 					page: 1,
-					type: "1",
 					title: "",
+					type: "1",
 				},
 				ruleValidate: {
 					
 				},
-				formValidate: {//表格数据绑定
-					title: "",
-					content: "",
-					year: "",
-					imgurl: "",
-					day: "",
-					type:"",
+				formValidate: {
+					title:"",
+					content:"",
+					imgurl:""
 				},
 				ids: []
 			}
 		},
 		methods: {
-			//图片上传成功时粗发事件
 			onSuccess(res, file) {
 				if(this.formValidate.imgurl) {
 				} else {
@@ -144,7 +131,7 @@
 				}
 			},
 			del1() {
-				this.formValidate.edimgurl = ""
+				this.formValidate.imgurl = ""
 			}
 		},
 		created() {
@@ -213,7 +200,7 @@
 	}
 	
 	.madelbox1 {
-		width: 142px;
+		width: 80px;
 		margin-left: 10px;
 		position: relative;
 		overflow: hidden;

@@ -43,7 +43,7 @@
 	export default {
 		data() {
 			return {
-				
+
 			}
 		},
 		methods: {
@@ -110,6 +110,10 @@
 	.wraperwidth {
 		width: 1420px;
 		margin: 0 auto;
+	}
+	
+	.headerbg {
+		width: 100%;
 	}
 	
 	.hrroute {

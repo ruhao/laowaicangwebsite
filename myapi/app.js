@@ -11,6 +11,8 @@ var upload = require('./routes/upload');
 var message = require('./routes/message');
 var kind = require('./routes/kind');
 var hr = require('./routes/hr');
+var internet = require('./routes/about');
+var about = require('./routes/internet');
 var news = require('./routes/news');
 var mongoose = require('mongoose');
 var app = express();
@@ -36,6 +38,8 @@ app.use('/upload', upload);
 app.use('/kind', kind);
 app.use('/message', message);
 app.use('/hr', hr);
+app.use('/about', about);
+app.use('/internet', internet);
 app.use('/news', news);
 
 // catch 404 and forward to error handler

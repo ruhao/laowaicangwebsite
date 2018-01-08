@@ -136,7 +136,7 @@
 
 		<!--营销网络-->
 		<div class="index-internet-body">
-			<img src="../../../images/index-network.jpg" />
+			<img class="imgsize" src="../../../images/index-network.jpg" />
 			<div class="index-internet-content">
 				<div class="index-internet-top">
 					<p class="index-internet-title">营销网络</p>
@@ -156,7 +156,7 @@
 
 		<!--联系我们-->
 		<div class="index-contact">
-			<img src="../../../images/index-contact.jpg" />
+			<img class="imgsize" src="../../../images/index-contact.jpg" />
 			<div class="index-contact-c">
 				<div class="index-contact-content">
 					<p class="index-contact-introduce">某某控股集团有限公司成立于2005年1月18日，是一个市政府资本加快国有资本的战略性调整，一些重点企业做大做强，XX（实业）集团有限公司，国有独资公司XYZ控股有限公司和市燃气集团有限责任公司重组和一个城市的建立， 是其中的一个最大的国有企业资本、基础设施和公共设施和市政府和市国资委规划投资融资平台。自成立以来...
@@ -198,7 +198,7 @@
 						num: "860+",
 						introduction: "我们合作品牌的数量已达到860多个"
 					}, {
-						num: "125",
+						num: "125+",
 						introduction: "我们公司产品历史悠久，每一件都很经典"
 					},
 					{
@@ -248,7 +248,9 @@
 		margin: 0;
 		padding: 0;
 	}
-	
+	.headerbg{
+		width: 100%;
+	}
 	.wraperwidth {
 		position: relative;
 		width: 1420px;
@@ -510,7 +512,9 @@
 		right: 0;
 		bottom: 0;
 	}
-	
+	 .imgsize{
+		width: 100%;
+	}
 	.index-contact-content {
 		position: absolute;
 		width: 640px;

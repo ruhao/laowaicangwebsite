@@ -75,6 +75,21 @@
 			<i-col :span="spanLeft" class="layout-menu-left">
 				<Menu active-key="1" theme="dark" width="auto">
 					<div class="layout-logo-left"></div>
+					<Submenu name="9">
+						<template slot="title">
+							<Icon type="magnet"></Icon>
+							关于我们
+							
+						</template>
+						<MenuItem name="9-1">
+							<Icon type="android-people"></Icon>
+							<router-link to='/about/aboutculture' tag='span'>企业文化</router-link>
+						</MenuItem>
+						<MenuItem name="9-2">
+							<Icon type="android-people"></Icon>
+							<router-link to='/about/abouthonor' tag='span'>企业荣誉</router-link>
+						</MenuItem>
+					</Submenu>
 					<Menu-item name="2">
 						<Icon type="ios-navigate"></Icon>
 						<router-link to='/index' tag='span'>产品模块</router-link>
@@ -83,7 +98,6 @@
 						<template slot="title">
 							<Icon type="ios-reverse-camera"></Icon>
 							最新新闻
-							
 						</template>
 						<MenuItem name="3-1">
 							<Icon type="ios-copy-outline"></Icon>
@@ -110,6 +124,10 @@
 						<Icon type="ios-copy-outline"></Icon>
 						<router-link to='/kind' tag='span'>分类模块</router-link>
 					</Menu-item>
+					<Menu-item name="6">
+						<Icon type="ios-world-outline"></Icon>
+						<router-link to='/internet' tag='span'>网络营销</router-link>
+					</Menu-item>
 					<Submenu name="7">
 						<template slot="title">
 							<Icon type="ios-people"></Icon>
@@ -129,7 +147,7 @@
 							<router-link to='/hr/advertises' tag='span'>人才招聘</router-link>
 						</MenuItem>
 					</Submenu>
-					<Menu-item name="6">
+					<Menu-item name="8">
 						<Icon type="ios-email-outline"></Icon>
 						<router-link to='/message' tag='span'>留言模块</router-link>
 					</Menu-item>

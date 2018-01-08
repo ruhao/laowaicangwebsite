@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div><img src="../../../images/join-ban.jpg"></div>
+		<div><img class="headerbg" src="../../../images/join-ban.jpg"></div>
 		<div class="wraperwidth">
 			<div class="hrroute">
 				<router-link to='/hr/strategy'>
@@ -101,6 +101,9 @@
 </script>
 
 <style scoped>
+		.headerbg{
+		width: 100%;
+	}
 	.wraperwidth{
 		width: 1420px;
 		margin: 0 auto;
