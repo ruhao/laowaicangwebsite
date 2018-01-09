@@ -8,6 +8,7 @@ var NewsSchema = new Schema({
 	title:String,
 	content:String,
 	type:String,
+	detaildate:String,
 	cateId: ObjectId,
 	year:String,
 	day:String,

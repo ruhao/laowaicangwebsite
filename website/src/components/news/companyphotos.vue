@@ -4,8 +4,8 @@
 		<div class="wraperwidth">
 			<div class="box">
 				<div v-for="item in fliter.data6" class="photobox">
-					<router-link to="/news/photodetail">
-					<img :src="item.zimgurl1">
+					<router-link :to="{name:'photodetail',params:{content:item}}">
+						<img :src="item.zimgurl1">
 					</router-link>
 				</div>
 				<div style="clear: both;"></div>

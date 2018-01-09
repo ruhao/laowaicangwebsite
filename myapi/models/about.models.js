@@ -10,6 +10,7 @@ var AboutSchema = new Schema({
 	imgurl:String,
 	cateId: ObjectId,
 	type:String,
+	bgimg:String,
 	date: { type: Date, default: Date.now }
 })
 

@@ -206,8 +206,8 @@
 	
 	.control1 {
 		position: absolute;
-		right: 15px;
-		top: 0;
+		right: 5px;
+		top: -5px;
 		cursor: pointer;
 	}
 	

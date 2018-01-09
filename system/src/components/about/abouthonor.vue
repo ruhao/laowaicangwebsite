@@ -110,7 +110,7 @@
 					limit: 12,
 					page: 1,
 					title: "",
-					type: "1",
+					type: "1",					
 				},
 				ruleValidate: {
 					
@@ -118,7 +118,9 @@
 				formValidate: {
 					title:"",
 					content:"",
-					imgurl:""
+					imgurl:"",
+					type:"",
+					bgimg:"http://localhost:3000/avatar-culture5.jpg",
 				},
 				ids: []
 			}
@@ -208,8 +210,8 @@
 	
 	.control1 {
 		position: absolute;
-		right: 15px;
-		top: 0;
+		right: 5px;
+		top: -5px;
 		cursor: pointer;
 	}
 	

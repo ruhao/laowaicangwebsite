@@ -91,10 +91,29 @@ const IndustryDynamics = resolve => {
 	})
 }
 
-
 const PhotoDetail = resolve => {
 	require.ensure(['./components/news/photodetail.vue'], () => {
 		resolve(require('./components/news/photodetail.vue'))
+	})
+}
+const AboutHonor = resolve => {
+	require.ensure(['./components/about/honor.vue'], () => {
+		resolve(require('./components/about/honor.vue'))
+	})
+}
+const AboutCulture = resolve => {
+	require.ensure(['./components/about/culture.vue'], () => {
+		resolve(require('./components/about/culture.vue'))
+	})
+}
+const AboutFramework = resolve => {
+	require.ensure(['./components/about/framework.vue'], () => {
+		resolve(require('./components/about/framework.vue'))
+	})
+}
+const AboutFootprint = resolve => {
+	require.ensure(['./components/about/footprint.vue'], () => {
+		resolve(require('./components/about/footprint.vue'))
 	})
 }
 export const routes = [{
@@ -107,7 +126,30 @@ export const routes = [{
 		path: '/about',
 		components: {
 			default: About,
-		}
+		},
+		children: [{
+			path: "honor",
+			components: {
+				default: AboutHonor
+			},
+		}, {
+			path: "",
+			components: {
+				default: AboutCulture
+			}
+
+		},{
+			path: "framework",
+			components: {
+				default: AboutFramework
+			},
+		}, {
+			path: "footprint",
+			components: {
+				default: AboutFootprint
+			}
+
+		}]
 	},
 	{
 		path: '/contact',
@@ -120,15 +162,15 @@ export const routes = [{
 		components: {
 			default: Internet,
 		},
-		children:[{
-			path:"server",
-			components:{
-				default:CompanyServer,
+		children: [{
+			path: "server",
+			components: {
+				default: CompanyServer,
 			}
-		},{
-			path:"/",
-			components:{
-				default:Imarketing,
+		}, {
+			path: "/",
+			components: {
+				default: Imarketing,
 			}
 		}]
 	},
@@ -141,23 +183,23 @@ export const routes = [{
 	{
 		path: '/hr',
 		components: {
-				default:Hr
+			default: Hr
 		},
-		children:[{
+		children: [{
 			path: "strategy",
 			components: {
-				default:Strategy
-		},
+				default: Strategy
+			},
 		}, {
 			path: "train",
 			components: {
-				default:Train
+				default: Train
 			}
-			
-		},{
+
+		}, {
 			path: "advertises",
 			components: {
-				default:Advertises
+				default: Advertises
 			}
 		}]
 	},
@@ -166,37 +208,38 @@ export const routes = [{
 		components: {
 			default: Product,
 		},
-	}, 
+	},
 	{
 		path: '/news',
 		components: {
-				default:News
+			default: News
 		},
-		children:[{
+		children: [{
 			path: "/",
 			components: {
-				default:CompanyNews
-		}
+				default: CompanyNews
+			}
 		}, {
 			path: "companyphotos",
 			components: {
-				default:CompanyPhotos
+				default: CompanyPhotos
 			}
-			
-		},{
+
+		}, {
 			path: "marketing",
 			components: {
-				default:Marketing
+				default: Marketing
 			}
-		},{
+		}, {
 			path: "industrydynamics",
 			components: {
-				default:IndustryDynamics
+				default: IndustryDynamics
 			}
-		},{
-			path: "photodetail",
+		}, {
+			path: "photodetail/:content",
+			name:"photodetail",
 			components: {
-				default:PhotoDetail
+				default: PhotoDetail
 			}
 		}]
 	}

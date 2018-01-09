@@ -23,20 +23,22 @@
 				<FormItem label="培训内容" prop="edpattern">
 					<Input v-model="formValidate.edreson" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter your education"></Input>
 				</FormItem>
+				<div v-if="!(formValidate.edimgurl&&formValidate.edimgurl1)">
 				<Upload multiple type="drag" name='avatar' :action="imgUrl" :on-success="onSuccess">
 					<div style="padding: 20px 0">
 						<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
 						<p>点击或将文件拖拽到这里上传</p>
 					</div>
 				</Upload>
+				</div>
 				<FormItem>
 					<div class="madelbox">
-						<div v-if="formValidate.edimgurl" class="madelbox1">
-							<span class="control1" @click="del1">X</span>
+						<div class="madelbox1">
+							<span v-if="formValidate.edimgurl" class="control1" @click="del1">X</span>
 							<img :src="formValidate.edimgurl">
 						</div>
-						<div v-if="formValidate.edimgurl1" class="madelbox1">
-							<span class="control1" @click="del2">X</span>
+						<div class="madelbox1">
+							<span v-if="formValidate.edimgurl1" class="control1" @click="del2">X</span>
 							<img :src="formValidate.edimgurl1">
 						</div>
 					</div>
@@ -226,8 +228,8 @@
 	
 	.control1 {
 		position: absolute;
-		right: 15px;
-		top: 0;
+		right: 5px;
+		top: -5px;
 		cursor: pointer;
 	}
 	
