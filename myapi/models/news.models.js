@@ -25,6 +25,7 @@ var NewsSchema = new Schema({
 	zimgurl2:String,
 	zimgurl3:String,
 	zimgurl4:String,
+	zimgurl5:String,
 	date: { type: Date, default: Date.now }
 })
 

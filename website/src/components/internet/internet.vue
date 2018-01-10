@@ -20,10 +20,12 @@
 		<div>
 			<router-view></router-view>
 		</div>
+		<Foot></Foot>
 	</div>
 </template>
 
 <script>
+	import Foot from "../common/footer.vue"
 	export default {
 		methods: {
 			imgchange() {
@@ -50,7 +52,10 @@
 				document.getElementById("hrimg2").style.left = 160 + "px"
 				document.getElementById("hrimg2").setAttribute("class", "imgchangq")
 			}
-		}
+		},
+		components: {
+			Foot,
+		},
 	}
 </script>
 

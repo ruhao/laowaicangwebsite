@@ -116,6 +116,11 @@ const AboutFootprint = resolve => {
 		resolve(require('./components/about/footprint.vue'))
 	})
 }
+const ServerDetail = resolve => {
+	require.ensure(['./components/internet/severdetail.vue'], () => {
+		resolve(require('./components/internet/severdetail.vue'))
+	})
+}
 export const routes = [{
 		path: '/',
 		components: {
@@ -171,6 +176,12 @@ export const routes = [{
 			path: "/",
 			components: {
 				default: Imarketing,
+			}
+		}, {
+			path: "severdetail/:content",
+			name:"severdetail",
+			components: {
+				default: ServerDetail,
 			}
 		}]
 	},

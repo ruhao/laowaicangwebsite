@@ -7,7 +7,7 @@
 				<div v-for="item in fliter.data6">
 					<div class="cnbox">
 						<div class="cnbox1">
-							<div class="cnbox3">
+							<div class="cnbox3" @mouseenter="newsmove(item.limitnum)">
 								<p class="cnboxp1"><span>{{item.day}}</span>{{item.year}}</p>
 								<p class="cnboxp2">{{item.title}}</p>
 							</div>
@@ -70,7 +70,11 @@
 				}
 			}
 		},
-		methods: {},
+		methods: {
+			newsmove(index){
+				console.log(index)
+			}
+		},
 		components: {
 			Nav,
 		},
@@ -140,6 +144,7 @@
 		margin-top: 20px;
 		margin-left: 20px;
 		position: absolute;
+		transition: all 1s;
 	}
 	
 	.cnboxp1 {

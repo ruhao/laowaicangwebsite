@@ -127,13 +127,14 @@ export default {
 			this.$http.post('http://localhost:3000/news/list', this.fliter).then(res => {
 				
 				this.fliter.data6 = res.data.rows
-				console.log(this.fliter.data6)
+				console.log(res.data)
 				this.li7 = res.data.pages
 				if(this.li7 < 7) {
 					for(let i = 1; i < this.li7; i++) {
 						this.pagenum.push(i)
 					}
 				}
+				
 			})
 		}
 	},
