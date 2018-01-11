@@ -58,11 +58,11 @@
 			this.$http.post("http://localhost:3000/about/list", this.fliter).then(res => {
 				let ii = res.data.rows.length
 				for(let i = 0; i < ii; i++) {
-					res.data.rows[i].content = res.data.rows[i].content.replace(/；/g, ";")
-					res.data.rows[i].content = res.data.rows[i].content.split(";")
+					res.data.rows[i].content = res.data.rows[i].content.replace(/；/g, ";")//进行替换，把中英文的；统一起来
+					res.data.rows[i].content = res.data.rows[i].content.split(";")//进行分割 使语句分行显示
 					let ll = res.data.rows[i].content.length
 					for(let j=0;j<ll;j++){
-						res.data.rows[i].content[j]=res.data.rows[i].content[j]+";"
+						res.data.rows[i].content[j]=res.data.rows[i].content[j]+";"//进行；好统一还原
 					}
 					res.data.rows[i].num = i
 				}

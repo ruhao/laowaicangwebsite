@@ -30,9 +30,15 @@
 				</li>
 			</ul>
 		</div>
-		<div class="headernavlast">
+		<div class="headernavlast" v-if="this.width>=1600">
 			<router-link to='/index' tag='span' class="navfont">CN</router-link><span class="navfontapsn">|</span>
 			<router-link class="navfont" to='/index' tag='span'>EN</router-link>
+		</div>
+		<div class="wraperwidth" v-else>
+			<div class="headernavlastb">
+				<router-link to='/index' tag='span' class="navfont">CN</router-link><span class="navfontapsn">|</span>
+				<router-link class="navfont" to='/index' tag='span'>EN</router-link>
+			</div>
 		</div>
 		<div>
 			<transition :name="transitionName">
@@ -48,11 +54,19 @@
 	export default {
 		data() {
 			return {
-				transitionName: 'slide-left'
+				transitionName: 'slide-left',
+				width: 1920,
 			}
 		},
+		created() {//vue生命周期
 
-		beforeRouteUpdate(to,
+		},
+		mounted() {//vue生命周期
+			window.onresize = () => {
+				this.width = document.documentElement.offsetWidth
+			}
+		},
+		beforeRouteUpdate(to,//路由生命周期
 			from, next) {
 			let isBack =
 				this.$router.isBack
@@ -75,7 +89,6 @@
 </script>
 
 <style scoped>
-
 	.wraperwidth {
 		width: 1420px;
 		margin: 0 auto;
@@ -90,7 +103,6 @@
 	ul {
 		margin-top: 30px;
 		list-style: none;
-
 	}
 	
 	.headernavleft {
@@ -136,7 +148,8 @@
 	li {
 		float: left;
 	}
-		.child-view {
+	
+	.child-view {
 		position: absolute;
 		width: 100%;
 		transition: all 1s cubic-bezier(.55, 0, .1, 1);
@@ -161,4 +174,10 @@
 		background: ;
 	}
 	
+	.headernavlastb {
+		position: absolute;
+		top: 60px;
+		right: 45px;
+		z-index: 10;
+	}
 </style>

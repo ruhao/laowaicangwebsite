@@ -1,3 +1,5 @@
+//模块引入
+
 const Index = resolve => {
 	require.ensure(['./components/index/index.vue'], () => {
 		resolve(require('./components/index/index.vue'))
@@ -121,6 +123,11 @@ const ServerDetail = resolve => {
 		resolve(require('./components/internet/severdetail.vue'))
 	})
 }
+
+//路由配置   path为路径
+//      components为引入的内容
+//      children嵌套路由
+//      name路由名字  可以在<router-link>直接跳转
 export const routes = [{
 		path: '/',
 		components: {

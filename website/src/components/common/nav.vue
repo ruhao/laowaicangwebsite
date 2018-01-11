@@ -8,7 +8,7 @@
 
 <script>
 	export default {
-		props: ["navtitle"]
+		props: ["navtitle"]//接受父组件传递的参数
 	}
 </script>
 

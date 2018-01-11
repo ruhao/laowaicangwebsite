@@ -13,6 +13,7 @@ var kind = require('./routes/kind');
 var hr = require('./routes/hr');
 var internet = require('./routes/internet');
 var about = require('./routes/about');
+var admin = require('./routes/admin');
 var news = require('./routes/news');
 var mongoose = require('mongoose');
 var app = express();
@@ -41,6 +42,7 @@ app.use('/hr', hr);
 app.use('/about', about);
 app.use('/internet', internet);
 app.use('/news', news);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

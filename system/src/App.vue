@@ -42,6 +42,7 @@
 		height: 60px;
 		background: #fff;
 		box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+		display: flex;
 	}
 	
 	.ivu-row-flex {
@@ -67,6 +68,13 @@
 	
 	.ivu-col {
 		transition: width .2s ease-in-out;
+	}
+	.titlestyle{
+		text-align: center;
+		flex:1;
+		line-height: 60px;
+		font-size: 36px;
+		font-weight: bold;
 	}
 </style>
 <template>
@@ -159,8 +167,9 @@
 						<i-button type="text" @click="toggleClick">
 							<Icon type="navicon" size="32"></Icon>
 						</i-button>
+						<p class="titlestyle">老外仓信息管理</p>	
 					</div>
-
+					
 					<div class="layout-content">
 						<div class="layout-content-main">
 							<router-view></router-view>

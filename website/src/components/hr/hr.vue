@@ -43,6 +43,7 @@
 </template>
 
 <script>
+	//模块导入
 	import Foot from "../common/footer.vue"
 	import Nav from "../common/nav.vue"
 	export default{
@@ -103,6 +104,7 @@
 <style scoped>
 		.headerbg{
 		width: 100%;
+		min-width: 1420px;
 	}
 	.wraperwidth{
 		width: 1420px;
@@ -110,6 +112,7 @@
 	}
 	.hrroute{
 		text-align: center;
+		
 	}
 	.heroutebox1{
 		display: inline-block;

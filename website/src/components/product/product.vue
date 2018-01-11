@@ -7,5 +7,9 @@
 <script>
 </script>
 
-<style>
+<style scoped>
+	.headerbg{
+		width: 100%;
+		min-width: 1420px;
+	}
 </style>

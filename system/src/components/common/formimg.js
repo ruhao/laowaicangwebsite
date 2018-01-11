@@ -1,13 +1,13 @@
 export default {
 	data(){
 		return {
-			imgUrl: 'http://localhost:3000/upload/upload',
+			imgUrl: 'http://localhost:3000/upload/upload',//上传模块的地址
 		}
 	},
 	methods: {
-		handleUpdate() {
+		handleUpdate() {//修改操作
 			
-			this.formValidate.date = new Date()
+			this.formValidate.date = new Date()//更新时  吧时间也顺带更新了
 			this.$http.put(`http://localhost:3000/${this.apimodel}/data/` + this.formValidate._id, this.formValidate).then(res => {
 				this.getData()
 				this.modal6 = false;
@@ -22,7 +22,7 @@ export default {
 			this.ids = ids;
 		},
 		onDeletes() {
-			this.$Modal.confirm({
+			this.$Modal.confirm({//进行一个确认框操作，以免误删
 				title: "确认删除",
 				content: "<p>确定删除吗</p>",
 				onOk: () => {

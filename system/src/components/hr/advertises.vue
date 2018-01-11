@@ -46,7 +46,7 @@
 					<Input v-model="formValidate.detail" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
 				</FormItem>
 				<FormItem>
-					<div v-if="formValidate.type">
+					<div v-if="formValidate.type"><!--通过type是否存在来判断该按钮是新增还是修改，触发的事件也不相同-->
 					<Button type="primary" @click="handleUpdate('formValidate')">修改</Button>
 					</div>
 					<div v-else>
@@ -60,13 +60,13 @@
 <script>
 	import Common from '../common/hm.js'
 	export default {
-		mixins: [Common],
+		mixins: [Common],//代码混入，通过公用Js代码混入来减少代码量
 		data() {
 			return {
-				apimodel: 'hr',
-				type:"3",
-				cateId:"5a447f5b039f0501acc5cd53",
-				columns7: [{
+				apimodel: 'hr',//由于代码混入，通过restfulapi来改变一个变量达到访问不同的数据库的目的
+				type:"3",//分类type，每个库都会有多个不同切换，每次切换通过改变不同的type来达到数据改变，从而来再次渲染视图层
+				cateId:"5a447f5b039f0501acc5cd53",//给上父元素的ID方便分类
+				columns7: [{//后台管理页面表格建立
 						title: '职位',
 						key: 'title'
 					}, {
@@ -120,6 +120,7 @@
 					}
 				],
 				fliter: {
+					//渲染的内容
 					data6: [],
 					total: 0,
 					limit: 12,
@@ -128,6 +129,7 @@
 					title:"",
 				},
 				formValidate: {
+					//表格的数据绑定。进行大部分数据库交互
 					title: '',
 					num: '',
 					site: '',
@@ -142,6 +144,7 @@
 					type:""
 				},
 				ruleValidate: {
+					//表单验证
 					title: [{
 						required: true,
 						message: 'The name cannot be empty',
@@ -177,10 +180,10 @@
 			}
 		},
 		methods: {
-			validateMobile(rule, value, callback) {
+			validateMobile(rule, value, callback) {//自定义正则表单验证
 				let reg = /^1[3|5|7|8]\d{9}$/
 				if(reg.test(value)) {
-					callback();
+					callback();//执行回调函数
 				} else {
 					callback(new Error('Please enter the correct phone number'));
 				}
@@ -188,14 +191,16 @@
 			handleUpdate() {
 				this.formValidate.date=new Date()
 				this.$http.put("http://localhost:3000/hr/data/"+this.formValidate._id, this.formValidate).then(res => {
+					//改变数据，通过this.formValidate._id找到相应的数据，然后把this.formValidate导入进行不一样的修改
 					this.getData()
 					this.modal6 = false;
 				})
 			}
 		},
 		created() {
-			this.cateid=this.$route.params.id
-			this.getData()
+			//生命周期
+			this.cateid=this.$route.params.id//获取传递的id
+			this.getData()//获取数据，为后续的渲染做准备
 		}
 	}
 </script>

@@ -56,7 +56,7 @@
 				type: "2",
 				apimodel: 'about',//resful api 接口路径不同处
 				cateId: "5a5336cd6c074c03d47fb4c5",
-				columns7: [{
+				columns7: [{//ui框架的表格创建
 						type: 'selection',
 						width: 60,
 						align: 'center'

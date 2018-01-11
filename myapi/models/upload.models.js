@@ -4,20 +4,31 @@ var Schema = mongoose.Schema;
 
 var ObjectId = Schema.ObjectId;
 
-var UploadSchema = new Schema({
-	cateId:ObjectId,
-	fieldname:String,
-	originalname:String,
-	encoding:String,
-	mimetype:String,
-	destination:String,
-	filename:String,
-	path:String,
-	size:String,
-	date: { type: Date, default: Date.now },
-	cateId: ObjectId
+var ProductSchema = new Schema({
+	title:String,
+	content:String,
+	type:String,
+	detaildate:String,
+	cateId: ObjectId,
+	year:String,
+	day:String,
+	imgurl:String,
+	htitle:String,
+	hyear:String,
+	hday:String,
+	hcontent:String,
+	ytitle:String,
+	yyear:String,
+	yday:String,
+	ycontent:String,
+	zimgurl1:String,
+	zimgurl2:String,
+	zimgurl3:String,
+	zimgurl4:String,
+	zimgurl5:String,
+	date: { type: Date, default: Date.now }
 })
 
-UploadSchema.plugin(mongoosePaginate);
+ProductSchema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model('upload',UploadSchema,'upload');
+module.exports = mongoose.model('product',ProductSchema,'product');

@@ -10,11 +10,13 @@ import {store} from './store.js'//vuex
 Vue.use(VueAxios,axios);
 Vue.use(VueRouter);
 
+//路由及跳转方式
 const router=new VueRouter({
   routes,
   mode:'history'
 })
 
+//实例化
 new Vue({
   el: '#app',
   router,

@@ -20,7 +20,7 @@
 				<FormItem label="时间">
 					<Input v-model="formValidate.detaildate" placeholder="like 17-09"></Input>
 				</FormItem>
-				<div v-if="!(formValidate.zimgurl1&&formValidate.zimgurl2&&formValidate.zimgurl3&&formValidate.zimgurl4)">
+				<div v-if="!(formValidate.zimgurl1&&formValidate.zimgurl2&&formValidate.zimgurl3&&formValidate.zimgurl4&&formValidate.zimgurl5)">
 				<Upload multiple type="drag" name='avatar' :action="imgUrl" :on-success="onSuccess">
 					<div style="padding: 20px 0">
 						<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
@@ -45,6 +45,10 @@
 						<div v-if="formValidate.zimgurl4" class="madelbox1">
 							<span v-if="formValidate.zimgurl1" class="control1" @click="del4">X</span>
 							<img :src="formValidate.zimgurl4">
+						</div>
+							<div v-if="formValidate.zimgurl5" class="madelbox1">
+							<span v-if="formValidate.zimgurl1" class="control1" @click="del5">X</span>
+							<img :src="formValidate.zimgurl5">
 						</div>
 					</div>
 				</FormItem>
@@ -152,6 +156,8 @@
 					this.formValidate.zimgurl3 = "http://localhost:3000/avatar-" + file.name
 				} else if(!this.formValidate.zimgurl4){
 					this.formValidate.zimgurl4 = "http://localhost:3000/avatar-" + file.name
+				} else if(!this.formValidate.zimgurl5){
+					this.formValidate.zimgurl5 = "http://localhost:3000/avatar-" + file.name
 				}
 			},
 			del1() {
@@ -165,6 +171,9 @@
 			},
 			del4() {
 				this.formValidate.zimgurl4 = ""
+			},
+			del5() {
+				this.formValidate.zimgurl5 = ""
 			}
 		},
 		created() {
