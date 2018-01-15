@@ -100,7 +100,7 @@
 					</Submenu>
 					<Menu-item name="2">
 						<Icon type="ios-navigate"></Icon>
-						<router-link to='/index' tag='span'>产品模块</router-link>
+						<router-link to='/product' tag='span'>产品模块</router-link>
 					</Menu-item>
 					<Submenu name="3">
 						<template slot="title">

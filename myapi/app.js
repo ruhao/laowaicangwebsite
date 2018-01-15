@@ -15,6 +15,7 @@ var internet = require('./routes/internet');
 var about = require('./routes/about');
 var admin = require('./routes/admin');
 var news = require('./routes/news');
+var products = require('./routes/products');
 var mongoose = require('mongoose');
 var app = express();
 var cors = require('cors');
@@ -43,7 +44,7 @@ app.use('/about', about);
 app.use('/internet', internet);
 app.use('/news', news);
 app.use('/admin', admin);
-
+app.use('/products', products);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

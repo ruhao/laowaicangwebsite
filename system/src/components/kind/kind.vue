@@ -225,9 +225,6 @@
 						this.starttree(data[i].children, Node[i].children)
 					}
 				}
-				//				if(this.kind[0].children) {
-				//					
-				//				}
 			}
 		},
 		created() {

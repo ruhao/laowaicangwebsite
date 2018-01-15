@@ -16,7 +16,6 @@ exports.list = function(req, res, next) {
 	var limit = (req.body.limit) ? req.body.limit : 10;
 
 	var queryCondition = {};
-    console.log(req.body.name)
 	if(req.body.name && req.body.name.trim().length > 0) {
 		name = req.body.name;
 		queryCondition = {

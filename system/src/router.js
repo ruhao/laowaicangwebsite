@@ -90,10 +90,20 @@ const AboutCulture = resolve => {
 		resolve(require('./components/about/aboutculture.vue'))
 	})
 }
+const Product = resolve => {
+	require.ensure(['./components/product/product.vue'], () => {
+		resolve(require('./components/product/product.vue'))
+	})
+}
 export const routes = [{
 		path: '/',
 		components: {
 			default: Index,
+		}
+	},{
+		path: '/product',
+		components: {
+			default: Product,
 		}
 	},
 	{

@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var KindSchema = new Schema({
 	text:String,
+	type:String,
 })
 KindSchema.plugin(mongooseMaterialized)
 var Kind = mongoose.model('Kind',KindSchema,'kind')
