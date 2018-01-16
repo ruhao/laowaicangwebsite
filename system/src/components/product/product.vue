@@ -6,7 +6,7 @@
 		<div class="product-right">
 			<Input v-model="fliter.name">
 			<Button slot="append" icon="ios-search" @click="search"></Button>
-			<Button type="success" slot="append" style="width: 80px;margin-left: 10px;background: lightgreen;color: white;" @click="onAdd">添加信息</Button>
+			<Button type="success" slot="append" style="width: 80px;margin-left: 10px;background: lightgreen;color: white;" @click="onAdd1">添加信息</Button>
 			<Button type="error" slot="append" style="width: 80px;margin-left: 10px;background: lightcoral;color: white;" @click='onDeletes'>删除选中</Button>
 			</Input>
 
@@ -89,6 +89,7 @@
 		mixins: [Common, Formimg],
 		data() {
 			return {
+				cateId: "",
 				data1: [{
 					title: 'parent 1',
 					expand: true,
@@ -167,7 +168,7 @@
 					page: 1,
 					name: "",
 					type: "",
-					cateId: "",
+					cateId: [],
 				},
 				ruleValidate: {
 
@@ -189,6 +190,7 @@
 					imgurl: "",
 					barcode: "",
 					type: "",
+					cateId: "",
 				},
 			}
 		},
@@ -202,20 +204,33 @@
 				this.formValidate.imgurl = ""
 			},
 			cidchance(rows) {
+				this.fliter.cateId = []
+				if(rows[0].children.length > 0) {
+					this.getcateid(rows[0].children)
+				} else {
+					this.fliter.cateId.push(rows[0].id)
+					this.cateId = rows[0].id
+				}
 				this.fliter.type = rows[0].type;
-				this.fliter.cateId = rows[0].id;
-				this.getcidData()
+				this.getData()
 			},
-			getcidData() {
-				this.$http.post("http://localhost:3000/products/list", this.fliter).then(res => {
-					console.log(res)
-				})
+			getcateid(rows) {
+				console.log(rows)
+				let ii = rows.length
+				for(let i = 0; i < ii; i++) {
+					if(rows[i].children.length > 0) {
+						this.getcateid(rows[i].children)
+					} else {
+						this.fliter.cateId.push(rows[i].id)
+					}
+				}
 			},
 			getData1() {
 				this.$http.get("http://localhost:3000/kind/data").then(res => {
 					this.data1[0].children = [];
 					this.data1[0].title = res.data[0].children[5].text;
 					this.data1[0].id = res.data[0].children[5]._id;
+					this.data1[0].cateId = res.data[0].children[5].parentId
 					this.data1[0].type = res.data[0].children[5].type;
 					if(res.data[0].children[5].children) {
 						this.starttree(res.data[0].children[5].children, this.data1[0].children)
@@ -229,12 +244,23 @@
 						title: data[i].text,
 						expand: true,
 						id: data[i]._id,
+						cateId: data[i].parentId,
 						children: [],
 					}
 					Node.push(obj)
 					if(data[i].children) {
 						this.starttree(data[i].children, Node[i].children)
 					}
+				}
+			},
+			onAdd1() {
+				if(this.cateId) {
+					this.modal6 = true,//打开对话框
+					Object.assign(this.$data.formValidate, this.$options.data().formValidate)//进行数据新的结合，吧原来的空数据赋值到当前表格
+				} else {
+					this.$Message.info
+
+							("请先选择分类");
 				}
 			}
 		},
@@ -255,6 +281,7 @@
 	.product-left {
 		width: 250px;
 		border-right: 1px #CCCCCC solid;
+		overflow: scroll;
 	}
 	
 	.product-right {
