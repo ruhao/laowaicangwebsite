@@ -47,6 +47,7 @@
 		mixins: [PageJs],
 		data() {
 			return {
+				apimodel:"news",
 				pagenum: [],
 				companynews: [],
 				li1: 1,

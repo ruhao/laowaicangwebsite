@@ -122,10 +122,12 @@ export default {
 			}
 		},
 		getData() {
-			this.$http.post('http://localhost:3000/news/list', this.fliter).then(res => {//获取数据
-				
+			this.$http.post(`http://localhost:3000/${this.apimodel}/list`, this.fliter).then(res => {//获取数据
+				let ii = res.data.rows.length
+				for(let i = 0;i<ii;i++){
+					res.data.rows[i].num = i
+				}
 				this.fliter.data6 = res.data.rows
-				console.log(res.data)
 				this.li7 = res.data.pages
 				if(this.li7 < 7) {
 					for(let i = 1; i < this.li7; i++) {

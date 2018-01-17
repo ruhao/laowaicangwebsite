@@ -106,7 +106,7 @@
 						var step = (json[k] - leader) / 10;
 						step = step > 0 ? Math.ceil(step) : Math.floor(step);
 						leader = leader + step;
-						if(k == "opacity") { // 记住我们的透明是不加单位的  不要加px
+						if(k == "opacity") { // 透明是不加单位的  不要加px
 							obj.style.opacity = leader / 100;
 							//                    opacity: 0.4;
 							//                    filter: alpha(opacity = 40);     /*不能改只能是 40  不能是 0.4*/

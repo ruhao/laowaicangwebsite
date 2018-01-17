@@ -48,6 +48,16 @@ const Product = resolve => {
 		resolve(require('./components/product/product.vue'))
 	})
 }
+const ProductList = resolve => {
+	require.ensure(['./components/product/productlist.vue'], () => {
+		resolve(require('./components/product/productlist.vue'))
+	})
+}
+const ProductCid = resolve => {
+	require.ensure(['./components/product/productcid.vue'], () => {
+		resolve(require('./components/product/productcid.vue'))
+	})
+}
 const Advertises = resolve => {
 	require.ensure(['./components/hr/advertises.vue'], () => {
 		resolve(require('./components/hr/advertises.vue'))
@@ -225,7 +235,18 @@ export const routes = [{
 		path: '/product',
 		components: {
 			default: Product,
-		},
+		},children: [{
+			path: "/",
+			components: {
+				default: ProductList
+			},
+		},{
+			path: "productcid/:id",
+			name:"productcid",
+			components: {
+				default: ProductCid
+			},
+		}]
 	},
 	{
 		path: '/news',

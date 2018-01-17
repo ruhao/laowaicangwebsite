@@ -14,7 +14,7 @@ exports.create = function(req, res, next) {
 exports.list = function(req, res, next) {
 	var page = (req.body.page) ? req.body.page : 1;
 	var limit = (req.body.limit) ? req.body.limit : 10;
-	
+
 	var queryCondition = {};
 	if(req.body.cateId && req.body.cateId.length > 0) {
 
@@ -31,14 +31,17 @@ exports.list = function(req, res, next) {
 			}
 		}
 	}
+	
 	if(req.body.title && req.body.title.trim().length > 0) {
 		title = req.body.title;
 		queryCondition.title = new RegExp(title, "i")
 	}
+
 	if(req.body.type && req.body.type.trim().length > 0) {
-		type = JSON.parse(req.body.cateId);
+		type = req.body.type;
 		queryCondition.type = new RegExp(type, "i")
 	}
+
 	DataModel.paginate(queryCondition, {
 		sort: {
 			_id: -1
