@@ -58,6 +58,11 @@ const ProductCid = resolve => {
 		resolve(require('./components/product/productcid.vue'))
 	})
 }
+const ProductDetail = resolve => {
+	require.ensure(['./components/product/productdetail.vue'], () => {
+		resolve(require('./components/product/productdetail.vue'))
+	})
+}
 const Advertises = resolve => {
 	require.ensure(['./components/hr/advertises.vue'], () => {
 		resolve(require('./components/hr/advertises.vue'))
@@ -160,7 +165,7 @@ export const routes = [{
 				default: AboutCulture
 			}
 
-		},{
+		}, {
 			path: "framework",
 			components: {
 				default: AboutFramework
@@ -196,7 +201,7 @@ export const routes = [{
 			}
 		}, {
 			path: "severdetail/:content",
-			name:"severdetail",
+			name: "severdetail",
 			components: {
 				default: ServerDetail,
 			}
@@ -235,17 +240,24 @@ export const routes = [{
 		path: '/product',
 		components: {
 			default: Product,
-		},children: [{
+		},
+		children: [{
 			path: "/",
 			components: {
 				default: ProductList
 			},
-		},{
+		}, {
 			path: "productcid/:id",
-			name:"productcid",
+			name: "productcid",
 			components: {
 				default: ProductCid
 			},
+		}, {
+			path: "productdetail/:content",
+			name: "productdetail",
+			components: {
+				default: ProductDetail
+			}
 		}]
 	},
 	{
@@ -276,7 +288,7 @@ export const routes = [{
 			}
 		}, {
 			path: "photodetail/:content",
-			name:"photodetail",
+			name: "photodetail",
 			components: {
 				default: PhotoDetail
 			}

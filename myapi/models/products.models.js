@@ -21,6 +21,7 @@ var ProductsSchema = new Schema({
 	imgurl:String,
 	match:String,
 	correlation:String,
+	introduction:String,
 	barcode:String,
 	cateId: ObjectId,
 	type:String,

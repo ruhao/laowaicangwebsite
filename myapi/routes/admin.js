@@ -4,7 +4,7 @@ var router = express.Router();
 var DataCtrl = require("../controller/admin.controller.js");
 
 router.post('/data',DataCtrl.create);
-router.get('/data/:id',DataCtrl.find);
+router.get('/data',DataCtrl.find);
 
 
 module.exports = router;

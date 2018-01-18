@@ -1,35 +1,42 @@
 <template>
 	<div>
+		<Nav navtitle="产品业务"></Nav>
 		<div class="wraperwidth">
 			<div class="productlistbox">
-				<div class="secondul">产品业务</div>
+				<div class="secondul" @click="getall">产品业务</div>
+				<!--二级搜索-->
+				<!--用v-if进行判断，用v-for进行循环-->
 				<div class="secondul" @click="getsecond(0)">
+					{{cidsec1}}
 					<div class="secondarea">
-						<div v-for="item in alldata" class="secondcon" @click="getsec(item.children,item.text)">
+						<div v-for="item in alldata" class="secondcon" @click="getsec(item.children,item.text,item)">
 							{{item.text}}
 						</div>
 					</div>
 				</div>
+				<!--三级搜索-->
 				<div class="secondul" @click="getsecond(1)" v-if="cidtir">
-					{{cidtir1}}
-					<div class="secondarea">
-						<div v-for="item in cidtir" class="secondcon" @click="getthird(item.children,item.text)">
-							{{item.text}}
-						</div>
-					</div>
-				</div>
-				<div class="secondul" @click="getsecond(2)" v-if="cidfour">
 					{{cidfour1}}
 					<div class="secondarea">
-						<div v-for="item in cidfour" class="secondcon" @click="getfour(item.children,item.text)">
+						<div v-for="item in cidtir" class="secondcon" @click="getthird(item.children,item.text,item)">
 							{{item.text}}
 						</div>
 					</div>
 				</div>
-				<div class="secondul" @click="getsecond(2)" v-if="cidfifth">
+				<!--四级搜索-->
+				<div class="secondul" @click="getsecond(2)" v-if="cidfour">
 					{{cidfifth1}}
 					<div class="secondarea">
-						<div v-for="item in cidfour" class="secondcon" @click="getfifth(item.children)">
+						<div v-for="item in cidfour" class="secondcon" @click="getfour(item.children,item.text,item)">
+							{{item.text}}
+						</div>
+					</div>
+				</div>
+				<!--五级搜索-->
+				<div class="secondul" @click="getsecond(3)" v-if="cidfifth">
+					{{cidsix1}}
+					<div class="secondarea">
+						<div v-for="item in cidfifth" class="secondcon" @click="getfifth(item.children,item.text,item)">
 							{{item.text}}
 						</div>
 					</div>
@@ -38,10 +45,10 @@
 		</div>
 		<div class="wraperwidth">
 			<div v-for="item in fliter.data6" class="serverbox" @mouseenter="moveup(item.num)" @mouseleave="movedown(item.num)">
-				<router-link :to="{name:'severdetail',params:{content:item}}">
+				<router-link :to="{name:'productdetail',params:{content:item}}">
 					<div class="serverbox1"><img :src="item.imgurl"></div>
 				</router-link>
-				<router-link :to="{name:'severdetail',params:{content:item}}">
+				<router-link :to="{name:'productdetail',params:{content:{content:item,navname:cidsec1}}}">
 					<div class="serverbox2">
 						<img src="../../../images/products2-1.jpg">
 						<p class="prolist">
@@ -82,7 +89,8 @@
 </template>
 
 <script>
-	import PageJs from "../common/page.js"
+	import PageJs from "../common/page.js";
+	import Nav from "../common/nav.vue";
 	export default {
 		mixins: [PageJs],
 		data() {
@@ -101,23 +109,28 @@
 					data6: [],
 					limit: 12,
 					page: 1,
+					cateId: [],
 				},
 				alldata: [],
 				tempdata: [],
-				listcid: [],
-				cidtir:"",
-				cidfour:"",
-				cidtir1:"",
-				cidfour1:"",
-				cidfifth1:"",
-				cidfifth:"",
-				id: "5a5c123d6354202600f286ff",
-				second: false,
+				cidtir: "",
+				cidfour: "",
+				cidfifth: "",
+				cidsix: "",
+				cidsec1: "",
+				cidtir1: "可选分类",
+				cidfour1: "可选分类",
+				cidfifth1: "可选分类",
+				cidsix1: "可选分类",
+				id: "",
+				second: false,//用于判断相同处展开与收拢
+				flag: 6,//用于判断点击不同处的展开与收拢
 			}
 		},
 		methods: {
+			//过得初始的数据
 			getcid(data, id) {
-				this.listcid = []
+				this.fliter.cateId = []
 				let ii = data.length
 				for(let i = 0; i < ii; i++) {
 					if(data[i]._id == id) {
@@ -131,6 +144,7 @@
 					}
 				}
 			},
+			//获取id数组与数据库进行交互
 			getlistcid(data) {
 				if(data.children) {
 					let ll = data.children.length
@@ -138,33 +152,78 @@
 						this.getlistcid(data.children[i])
 					}
 				} else {
-					this.listcid.push(data._id)
+					this.fliter.cateId.push(data._id)
 				}
 			},
-			getsec(value,value1){
-				this.cidtir=value
-				this.cidtir1=value1
+			//this.cidtir 是多级列表选项
+			//cidtir 是多级列表的标题
+			//getlistcid重新获取id实现精确分类
+			getall(){
+				this.fliter.cateId=[],
+				this.getData()
 			},
-			getthird(value,value1){
-				this.cidfour=value
-				this.cidfour1=value1
+			getsec(value, value1, value2) {
+				this.cidsec1= value2.text 
+				this.cidtir = value
+				this.cidtir1 = value1
+				this.getlistcid(value2)
+				this.getData()
 			},
-			getfour(value,value1){
-				this.cidfifth=value
-				this.cidfifth1=value1
+			getthird(value, value1, value2) {
+				this.cidfour = value
+				this.cidfour1 = value1
+				this.getlistcid(value2)
+				this.getData()
 			},
-			getfifth(){
-				
+			getfour(value, value1, value2) {
+				this.cidfifth = value
+				this.cidfifth1 = value1
+				this.getlistcid(value2)
+				this.getData()
 			},
+			getfifth(value, value1, value2) {
+				this.cidsix = value
+				this.cidsix1 = value1
+				this.getlistcid(value2)
+				this.getData()
+			},
+			//点击进行动画效果交互
 			getsecond(index) {
-				let vv = this.alldata.length
-				if(this.second) {
-					this.second = false
-					document.getElementsByClassName("secondarea")[index].style.height = 0 + "px"
+				this.fliter.cateId = [] //重置cateId
+				let vv = this.alldata.length //获取数量 来计算secondarea的高度
+				let bb = document.getElementsByClassName("secondarea").length//获取循环长度
+				if(this.flag == index) {//当点击与上一次同时
+					for(let i = 0; i < bb; i++) {
+						if(i == index) {//点击部分为展开
+							if(this.second) {
+								this.second = false
+								document.getElementsByClassName("secondarea")[i].style.height = vv * 40 + "px";
+							} else {
+								this.second = true
+								document.getElementsByClassName("secondarea")[i].style.height = 0 + "px"
+							}
+						} else {
+							//其他部分为收拢
+							document.getElementsByClassName("secondarea")[i].style.height = 0 + "px"
+
+						}
+
+					}
 				} else {
-					this.second = true
-					document.getElementsByClassName("secondarea")[index].style.height = vv * 40 + "px"
+					//点击部分与上次一次不相同时
+					for(let i = 0; i < bb; i++) {
+						if(i == index) {
+							document.getElementsByClassName("secondarea")[i].style.height = vv * 40 + "px";//当前点击的为展开
+							this.flag = index;
+							this.second = false;//进行设置，避免多点一次的情况出现
+						} else {
+							document.getElementsByClassName("secondarea")[i].style.height = 0 + "px"//其他的都是收拢
+
+						}
+
+					}
 				}
+
 			},
 			moveup(value) {
 				document.getElementsByClassName("serverbox2")[value].id = "activet";
@@ -173,11 +232,16 @@
 				document.getElementsByClassName("serverbox2")[value].id = "";
 			}
 		},
+		components: {
+			Nav,
+		},
 		created() {
-			this.getData()
+			this.id=this.$route.params.id.id//接受传递下来的信息
+			this.cidsec1=this.$route.params.id.name
 			this.$http.get("http://localhost:3000/kind/data").then(res => {
 				this.alldata = res.data[0].children[5].children
 				this.getcid(this.alldata, this.id)
+				this.getData()
 			})
 		},
 	}
@@ -268,13 +332,15 @@
 	}
 	
 	.serverbox {
-		width: 350px;
+		width: 338px;
 		position: relative;
-		height: 350px;
+		height: 338px;
 		float: left;
 		cursor: pointer;
 		overflow: hidden;
 		z-index: 11;
+		margin-left: 12px;
+		margin-top: 12px;
 	}
 	
 	.serverbox1 {
@@ -290,11 +356,11 @@
 	
 	.serverbox2 {
 		position: absolute;
-		top: 350px;
+		top: 338px;
 		left: 0px;
 		background: #f9f1e9;
-		width: 350px;
-		height: 350px;
+		width: 338px;
+		height: 338px;
 		opacity: 0;
 		transition: all 0.5s;
 		text-align: center;

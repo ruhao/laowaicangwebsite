@@ -11,9 +11,7 @@ exports.create = function(req, res, next) {
 }
 
 exports.find = function(req, res, next) {
-	var id = req.params.id;
-	const datamodel = new DataModel(req.body)
-	datamodel.findById(id, function(err, data) {
+	DataModel.find({}, function(err, data) {
 		res.json(data);
 	})
 }

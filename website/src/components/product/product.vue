@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div><img class="headerbg" src="../../../images/products-ban.jpg"></div>
-		<Nav navtitle="产品业务"></Nav>
+		
 		<div class="wraperwidth-box">
 			<router-view></router-view>
 		</div>
@@ -10,7 +10,6 @@
 </template>
 
 <script>
-	import Nav from "../common/nav.vue"
 	import Foot from "../common/footer.vue"
 	export default {
 
@@ -18,7 +17,6 @@
 
 		},
 		components: {
-			Nav,
 			Foot,
 		},
 	}
