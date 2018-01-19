@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div>
-			<div><img class="headerbg" src="../../../images/banner1.jpg"></div>
+			<div><img class="headerbg" src="../../../../myapi/upload/avatar-banner1.jpg"/></div>
 		</div>
 
 		<!--产品业务-->

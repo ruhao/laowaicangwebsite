@@ -45,10 +45,10 @@
 		</div>
 		<div class="wraperwidth">
 			<div v-for="item in fliter.data6" class="serverbox" @mouseenter="moveup(item.num)" @mouseleave="movedown(item.num)">
-				<router-link :to="{name:'productdetail',params:{content:item}}">
+				<router-link :to="{name:'productdetail',params:{content:{content:item,navname:cidsec1,relative:tempdata}}}">
 					<div class="serverbox1"><img :src="item.imgurl"></div>
 				</router-link>
-				<router-link :to="{name:'productdetail',params:{content:{content:item,navname:cidsec1}}}">
+				<router-link :to="{name:'productdetail',params:{content:{content:item,navname:cidsec1,relative:tempdata}}}">
 					<div class="serverbox2">
 						<img src="../../../images/products2-1.jpg">
 						<p class="prolist">
@@ -168,12 +168,14 @@
 				this.cidtir1 = value1
 				this.getlistcid(value2)
 				this.getData()
+				console.log(this.cidtir)
 			},
 			getthird(value, value1, value2) {
 				this.cidfour = value
 				this.cidfour1 = value1
 				this.getlistcid(value2)
 				this.getData()
+				console.log(this.cidtir)
 			},
 			getfour(value, value1, value2) {
 				this.cidfifth = value
@@ -189,6 +191,7 @@
 			},
 			//点击进行动画效果交互
 			getsecond(index) {
+				console.log(1)
 				this.fliter.cateId = [] //重置cateId
 				let vv = this.alldata.length //获取数量 来计算secondarea的高度
 				let bb = document.getElementsByClassName("secondarea").length//获取循环长度
@@ -241,6 +244,7 @@
 			this.$http.get("http://localhost:3000/kind/data").then(res => {
 				this.alldata = res.data[0].children[5].children
 				this.getcid(this.alldata, this.id)
+				console.log(this.cidtir)
 				this.getData()
 			})
 		},
