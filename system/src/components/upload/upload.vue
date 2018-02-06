@@ -7,17 +7,18 @@
 	</Upload>
 </template>
 <script>
-	export default {
-		data() {
-			return {
-				imgUrl: 'http://localhost:3000/upload/upload'
-			}
-		},
-		methods: {
-			 onSuccess (res, file) {
-                console.log(file)
-            },
-		},
-
-	}
+export default {
+  data() {
+    return {
+      imgUrl: "http://localhost:3000/upload/upload"
+    };
+  },
+  methods: {
+    onSuccess(res, file) {
+		this.$http.post("http://localhost:3000/xlsx/deletes").then(res=>{
+			console.log(res.data)
+		})
+    }
+  }
+};
 </script>

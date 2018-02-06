@@ -1,5 +1,5 @@
 var mongoose = require("mongoose")
-var DataModel = require("../models/products.models")
+var DataModel = require("../models/brand.models")
 
 exports.create = function(req, res, next) {
 	const datamodel = new DataModel(req.body)
@@ -10,41 +10,21 @@ exports.create = function(req, res, next) {
 	)
 }
 
-
 exports.list = function(req, res, next) {
 	var page = (req.body.page) ? req.body.page : 1;
 	var limit = (req.body.limit) ? req.body.limit : 10;
 
 	var queryCondition = {};
-	if(req.body.cateId && req.body.cateId.length > 0) {
-
-		
-		cateId = req.body.cateId;
-		var cateIds = [];
-		for(var i = 0; i < cateId.length; i++) {
-
-			cateIds.push(mongoose.Types.ObjectId(cateId[i]));
-		}
-		queryCondition = {
-			cateId: {
-				$in: cateIds
-			}
-		}
-	}
-	
-	if(req.body.title && req.body.title.trim().length > 0) {
-		title = req.body.title;
-		queryCondition.title = new RegExp(title, "i")
+	if(req.body.type && req.body.type.trim().length > 0) {
+		type = req.body.type;
+		queryCondition.type = new RegExp(type, "i")
 	}
 	if(req.body.name && req.body.name.trim().length > 0) {
 		name = req.body.name;
 		queryCondition.name = new RegExp(name, "i")
 	}
-	if(req.body.type && req.body.type.trim().length > 0) {
-		type = req.body.type;
-		queryCondition.type = new RegExp(type, "i")
-	}
-
+	console.log(queryCondition)
+	console.log(1)
 	DataModel.paginate(queryCondition, {
 		sort: {
 			_id: -1
@@ -52,6 +32,8 @@ exports.list = function(req, res, next) {
 		page: parseInt(page),
 		limit: parseInt(limit)
 	}, function(err, result) {
+		console.log(result)	
+		console.log(queryCondition)	
 		result.rows = result.docs;
 		delete result.docs;
 
@@ -79,24 +61,15 @@ exports.update = function(req, res, next) {
 		})
 }
 
+
 exports.deletes = function(req, res, next) {
 	var ids = req.body.ids;
 	if(ids.length > 0) {
-		DataModel.remove({
-				_id: {
-					$in: ids.split(',')
-				}
-			})
+		DataModel.remove({ _id: { $in: ids.split(',') } })
 			.then(data => {
-				res.json({
-					"msg": "--delete-success--",
-					"status": 200
-				})
+				res.json({ "msg": "--delete-success--", "status": 200 })
 			})
 	} else {
-		res.json({
-			"msg": "--delete-fail--",
-			"status": 404
-		})
+		res.json({ "msg": "--delete-fail--", "status": 404 })
 	}
 }

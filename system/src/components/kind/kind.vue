@@ -185,7 +185,6 @@
 						this.$Message.info('Clicked ok');
 					})
 				} else {
-					console.log(this.formItem)
 					this.$http.put("http://localhost:3000/kind/data/" + this.formItem.id, this.formItem).then(res => {
 						console.log(this.formItem)
 						console.log(2)
@@ -203,11 +202,20 @@
 					this.data5[0].children = [];
 					this.kinddata = res.data[0]
 					this.data5[0].text = this.kinddata.text
-					console.log(this.kinddata)
 					this.data5[0].parentId = this.kinddata.parentId
 					if(this.kinddata.children) {
 						this.starttree(this.kinddata.children, this.data5[0].children)
 					}
+					
+					console.log(res.data)
+					res.data=JSON.stringify(res.data)
+					let obj ={text:res.data}
+					this.$http.post("http://120.79.22.222:3000/kind/data",obj).then(res=>{})
+//					let oo = res.data[0].children[5].children.length
+//					console.log(oo)
+//					for(let i=0;i<oo;i++){
+//						this.$http.post("http://localhost:3000/kind/data",res.data[0].children[5].children[i]).then(res=>{})
+//					}
 				})
 			},
 			starttree(data, Node) {

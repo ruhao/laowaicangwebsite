@@ -15,6 +15,8 @@ var internet = require('./routes/internet');
 var about = require('./routes/about');
 var admin = require('./routes/admin');
 var news = require('./routes/news');
+var brand = require('./routes/brand');
+var xlsx = require('./routes/xlsx');
 var products = require('./routes/products');
 var mongoose = require('mongoose');
 var app = express();
@@ -44,6 +46,8 @@ app.use('/about', about);
 app.use('/internet', internet);
 app.use('/news', news);
 app.use('/admin', admin);
+app.use('/xlsx', xlsx);
+app.use('/brand', brand)
 app.use('/products', products);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

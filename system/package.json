@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "xlsx-to-json": "*",
     "axios": "^0.17.0",
     "iview": "^2.6.0",
     "moment": "^2.20.1",
