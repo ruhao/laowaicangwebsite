@@ -9,6 +9,12 @@ exports.create = function(req, res, next) {
 		}
 	)
 }
+exports.find = function(req, res, next) {
+	const id = req.params.id;
+	DataModel.findById(id, function(err, data) {
+		res.json(data)
+	})
+}
 
 exports.list = function(req, res, next) {
 	var page = (req.body.page) ? req.body.page : 1;
@@ -23,8 +29,6 @@ exports.list = function(req, res, next) {
 		name = req.body.name;
 		queryCondition.name = new RegExp(name, "i")
 	}
-	console.log(queryCondition)
-	console.log(1)
 	DataModel.paginate(queryCondition, {
 		sort: {
 			_id: -1
@@ -32,8 +36,8 @@ exports.list = function(req, res, next) {
 		page: parseInt(page),
 		limit: parseInt(limit)
 	}, function(err, result) {
-		console.log(result)	
-		console.log(queryCondition)	
+		console.log(result)
+		console.log(queryCondition)
 		result.rows = result.docs;
 		delete result.docs;
 
@@ -61,15 +65,24 @@ exports.update = function(req, res, next) {
 		})
 }
 
-
 exports.deletes = function(req, res, next) {
 	var ids = req.body.ids;
 	if(ids.length > 0) {
-		DataModel.remove({ _id: { $in: ids.split(',') } })
+		DataModel.remove({
+				_id: {
+					$in: ids.split(',')
+				}
+			})
 			.then(data => {
-				res.json({ "msg": "--delete-success--", "status": 200 })
+				res.json({
+					"msg": "--delete-success--",
+					"status": 200
+				})
 			})
 	} else {
-		res.json({ "msg": "--delete-fail--", "status": 404 })
+		res.json({
+			"msg": "--delete-fail--",
+			"status": 404
+		})
 	}
 }

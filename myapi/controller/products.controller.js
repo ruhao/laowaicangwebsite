@@ -40,6 +40,10 @@ exports.list = function(req, res, next) {
 		name = req.body.name;
 		queryCondition.name = new RegExp(name, "i")
 	}
+	if(req.body.belong && req.body.belong.trim().length > 0) {
+		belong = req.body.belong;
+		queryCondition.belong = new RegExp(belong, "i")
+	}
 	if(req.body.type && req.body.type.trim().length > 0) {
 		type = req.body.type;
 		queryCondition.type = new RegExp(type, "i")

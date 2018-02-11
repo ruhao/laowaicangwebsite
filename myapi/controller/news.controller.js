@@ -19,6 +19,18 @@ exports.list = function(req, res, next) {
 		title = req.body.title;
 		queryCondition.title = new RegExp(title, "i")
 	}
+	if(req.body.htitle && req.body.htitle.trim().length > 0) {
+		htitle = req.body.htitle;
+		queryCondition.htitle = new RegExp(htitle, "i")
+	}
+	if(req.body.ytitle && req.body.ytitle.trim().length > 0) {
+		ytitle = req.body.ytitle;
+		queryCondition.ytitle = new RegExp(ytitle, "i")
+	}
+	if(req.body.content && req.body.content.trim().length > 0) {
+		content = req.body.content;
+		queryCondition.content = new RegExp(content, "i")
+	}
 	if(req.body.type && req.body.type.trim().length > 0) {
 		type = req.body.type;
 		queryCondition.type = new RegExp(type, "i")
@@ -57,15 +69,24 @@ exports.update = function(req, res, next) {
 		})
 }
 
-
 exports.deletes = function(req, res, next) {
 	var ids = req.body.ids;
 	if(ids.length > 0) {
-		DataModel.remove({ _id: { $in: ids.split(',') } })
+		DataModel.remove({
+				_id: {
+					$in: ids.split(',')
+				}
+			})
 			.then(data => {
-				res.json({ "msg": "--delete-success--", "status": 200 })
+				res.json({
+					"msg": "--delete-success--",
+					"status": 200
+				})
 			})
 	} else {
-		res.json({ "msg": "--delete-fail--", "status": 404 })
+		res.json({
+			"msg": "--delete-fail--",
+			"status": 404
+		})
 	}
 }

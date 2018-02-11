@@ -25,6 +25,7 @@ var ProductsSchema = new Schema({
 	barcode:String,
 	cateId: ObjectId,
 	type:String,
+	belong:String,
 	date: { type: Date, default: Date.now }
 })
 
